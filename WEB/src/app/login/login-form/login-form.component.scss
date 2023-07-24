@@ -1,0 +1,85 @@
+:host {
+    display: block;
+}
+
+div.imageLog {
+ //   background-image: url("src/assets/Img/loginUser.jpg");
+}
+
+.headerClass {
+    border-radius: 30px;
+}
+
+.bottonStyle {
+    height: 44px;
+    background: rgb(17, 126, 55);
+    background: linear-gradient(90deg, rgba(17, 126, 55, 1) 0%, rgba(165, 194, 23, 1) 100%);
+    width: 84%;
+    border-radius: 20px;
+    margin-top: 2%;
+    color: white;
+}
+
+.fieldLogin {
+    margin-left: 30px;
+    margin-right: 30px;
+    color: #147F36;
+}
+
+.login-box {
+    width: 350px;
+    margin: 0 auto;
+    /* height: 69%;*/
+    margin-right: 8%;
+    float: right;
+    border-radius: 30px;
+    margin-top: 95px;
+
+}
+
+.login-register {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+    padding: 0 0;
+    position: fixed;
+}
+
+.boxFormLogin {
+    padding: 0.7rem;
+
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+
+em {
+    float: right;
+    color: #E05C65;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.error input {
+    background-color: #E3C3C5;
+}
+
+.error ::-webkit-input-placeholder {
+    color: #999;
+}
+
+.error ::-moz-placeholder {
+    color: #999;
+}
+
+.error :-moz-placeholder {
+    color: #999;
+}
+
+.error :ms-input-placeholder {
+    color: #999;
+}
