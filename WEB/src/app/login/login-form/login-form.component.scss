@@ -1,13 +1,20 @@
+body {
+    margin: 0;
+    background-color: green;
+}
+
 :host {
     display: block;
+    background-color: green;
 }
 
 div.imageLog {
- //   background-image: url("src/assets/Img/loginUser.jpg");
+   // background-image: url("src/Codestart-removebg-preview.png");
 }
 
 .headerClass {
     border-radius: 30px;
+    
 }
 
 .bottonStyle {
@@ -30,8 +37,8 @@ div.imageLog {
     width: 350px;
     margin: 0 auto;
     /* height: 69%;*/
-    margin-right: 8%;
-    float: right;
+    /*margin-right: 8%;*/
+    float: center;
     border-radius: 30px;
     margin-top: 95px;
 
@@ -58,7 +65,7 @@ div.imageLog {
 
 
 em {
-    float: right;
+    float: center;
     color: #E05C65;
     padding-left: 10px;
     padding-right: 10px;
@@ -83,3 +90,13 @@ em {
 .error :ms-input-placeholder {
     color: #999;
 }
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }

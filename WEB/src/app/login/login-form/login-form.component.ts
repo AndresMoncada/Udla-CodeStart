@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, FormControl } from "@angular/forms";
+import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: "UCS-login-form",
@@ -13,11 +14,19 @@ export class LoginFormComponent implements OnInit{
 
     mensajeError: string = "Usuario o contraseña incorrecto"
 
+    emailFormControl = new FormControl('', [Validators.required, Validators.email]);
 
     constructor(
         private builder: FormBuilder,
+        private modalService: NgbModal
     ){}
 
+    public open(modal: any): void {
+
+        this.modalService.open(modal);
+    
+      }
+      
     ngOnInit()
     {
         this.initForm();
@@ -29,4 +38,5 @@ export class LoginFormComponent implements OnInit{
             password:""
         })
     }
+
 }
