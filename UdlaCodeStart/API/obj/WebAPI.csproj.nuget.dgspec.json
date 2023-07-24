@@ -1,21 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Repositorios\\Udla-CodeStart\\UdlaCodeStart\\API\\WebAPI.csproj": {}
+    "D:\\Users\\heiva\\Desktop\\UDLA\\UdlaCodeStart\\API\\WebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Repositorios\\Udla-CodeStart\\UdlaCodeStart\\API\\WebAPI.csproj": {
+    "D:\\Users\\heiva\\Desktop\\UDLA\\UdlaCodeStart\\API\\WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Repositorios\\Udla-CodeStart\\UdlaCodeStart\\API\\WebAPI.csproj",
+        "projectUniqueName": "D:\\Users\\heiva\\Desktop\\UDLA\\UdlaCodeStart\\API\\WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "C:\\Repositorios\\Udla-CodeStart\\UdlaCodeStart\\API\\WebAPI.csproj",
-        "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-        "outputPath": "C:\\Repositorios\\Udla-CodeStart\\UdlaCodeStart\\API\\obj\\",
+        "projectPath": "D:\\Users\\heiva\\Desktop\\UDLA\\UdlaCodeStart\\API\\WebAPI.csproj",
+        "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
+        "outputPath": "D:\\Users\\heiva\\Desktop\\UDLA\\UdlaCodeStart\\API\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\USUARIO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -39,36 +44,17 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "dependencies": {
-            "Microsoft.AspNetCore.OpenApi": {
-              "target": "Package",
-              "version": "[7.0.8, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[6.5.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400-preview.23330.10\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.411\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,7 +1,8 @@
 import { NgModule } from "@angular/core";
+import { LoginFormComponent } from "./login-form/login-form.component";
 
 @NgModule({
-    declarations: [],
+    declarations: [LoginFormComponent],
     imports: []
 })
 
