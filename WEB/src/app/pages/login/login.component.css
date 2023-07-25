@@ -1,16 +1,14 @@
-/* html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0; 
-} */
-
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     width:100vw;
     height:100vh; 
-    background-color: #006239;
+    background-color: #77dd77;
+}
+
+.code-green{
+    color: #7cfc00;
 }
 
 .login {
@@ -44,7 +42,7 @@
     width: 50%;
     height: 45px;
     margin-bottom: 25px; 
-    background: #006239;
+    background: #77dd77;
     border: none;
     box-shadow: none;
     cursor: pointer;
@@ -83,7 +81,7 @@
     font-size: 12px;
     padding: 2px 4px;
     /* border: 1px solid #000; */
-    background: #006239;
+    background: #77dd77;
     color: #fff;
 }
 
@@ -101,6 +99,6 @@
     font-weight: 600;
 }
 
-.login a span:hover {
-    color: #006239;
+.btn-inicio-sesion:hover {
+    background-color: #006239;
 }
