@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-    selector: "UCS-inicio",
-    templateUrl: "./inicio.component.html",
-    styleUrls: ["./inicio.component.css"]
+    selector: "UCS-dashboard",
+    templateUrl: "./dashboard.component.html",
+    styleUrls: ["./dashboard.component.css"]
 })
 
 export class InicioComponent implements OnInit {
