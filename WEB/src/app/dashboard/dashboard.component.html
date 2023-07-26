@@ -1,0 +1,18 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Aprendizaje</h1>
+  <mat-grid-list cols="2" rowHeight="350px">
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card">
+        <mat-card-content class="dashboard-card-content">
+          <div class = "nuevo">
+            <img class="example-header-image" src={{card.src}} alt="Imagen módulo">
+          </div>
+        <mat-divider></mat-divider>
+          <div class="card-footer">
+            <p style="font-weight: bold; font-size: 25px;">{{card.title}}</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

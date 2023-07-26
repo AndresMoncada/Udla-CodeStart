@@ -1,0 +1,48 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar style="margin-left: 90px;"> 
+    Usuario
+    </mat-toolbar>
+    <mat-nav-list>
+      <mat-divider></mat-divider>
+      <a mat-list-item href="#">Inicio</a>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+    <mat-list>
+      <div class="subheader">Aprendizaje</div>
+      <mat-list-item class="item-content" *ngFor="let aprendizaje of aprendizaje">
+        <a mat-list-item href="#">
+          {{ aprendizaje.name }}
+          <mat-icon class="icon-class">
+            {{ aprendizaje.icon }}
+          </mat-icon>
+        </a>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <div class="subheader">Preferencias</div>
+      <mat-list-item class="item-content" *ngFor="let preferencias of preferencias">
+        <a mat-list-item href="#">
+          {{ preferencias.name }}
+        </a>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span><img src='{{imagenURL}}'><img class="img2" src='{{imagenURL2}}'></span>
+      <div class="example-button-container">
+        <button mat-mini-fab aria-label="Salir" >
+          <mat-icon>exit_to_app</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <app-dashboard></app-dashboard>
+  </mat-sidenav-content>
+</mat-sidenav-container>
