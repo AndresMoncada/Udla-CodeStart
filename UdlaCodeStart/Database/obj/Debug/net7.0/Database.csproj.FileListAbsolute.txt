@@ -1,0 +1,14 @@
+C:\Repositorios\Udla-CodeStart\UdlaCodeStart\Database\bin\Debug\net7.0\Database.deps.json
+C:\Repositorios\Udla-CodeStart\UdlaCodeStart\Database\bin\Debug\net7.0\Database.runtimeconfig.json
+C:\Repositorios\Udla-CodeStart\UdlaCodeStart\Database\bin\Debug\net7.0\Database.dll
+C:\Repositorios\Udla-CodeStart\UdlaCodeStart\Database\bin\Debug\net7.0\Database.pdb
+C:\Repositorios\Udla-CodeStart\UdlaCodeStart\Database\obj\Debug\net7.0\Database.csproj.AssemblyReference.cache
+C:\Repositorios\Udla-CodeStart\UdlaCodeStart\Database\obj\Debug\net7.0\Database.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repositorios\Udla-CodeStart\UdlaCodeStart\Database\obj\Debug\net7.0\Database.AssemblyInfoInputs.cache
+C:\Repositorios\Udla-CodeStart\UdlaCodeStart\Database\obj\Debug\net7.0\Database.AssemblyInfo.cs
+C:\Repositorios\Udla-CodeStart\UdlaCodeStart\Database\obj\Debug\net7.0\Database.csproj.CoreCompileInputs.cache
+C:\Repositorios\Udla-CodeStart\UdlaCodeStart\Database\obj\Debug\net7.0\Database.dll
+C:\Repositorios\Udla-CodeStart\UdlaCodeStart\Database\obj\Debug\net7.0\refint\Database.dll
+C:\Repositorios\Udla-CodeStart\UdlaCodeStart\Database\obj\Debug\net7.0\Database.pdb
+C:\Repositorios\Udla-CodeStart\UdlaCodeStart\Database\obj\Debug\net7.0\Database.genruntimeconfig.cache
+C:\Repositorios\Udla-CodeStart\UdlaCodeStart\Database\obj\Debug\net7.0\ref\Database.dll

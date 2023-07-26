@@ -1,19 +1,26 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Ubuntu', sans-serif;
+.container {
+    display: flex;
+    justify-content: center;
     align-items: center;
+    width: 100vw;
     height: 100vh;
-    background: #03396c;
+    background-color: #77dd77;
+}
+
+
+img {
+    width: 250px;
+    height: 245px;
+    margin-top: -40px;
 }
 
 .login {
     text-align: center;
-    width: 350px;
+    width: 380px;
     border-radius: 20px;
     box-sizing: border-box;
     padding: 40px;
-    background: #fff;
+    background: #ffffff;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -31,6 +38,21 @@ body {
     position: relative;
     width: 100%;
     margin-bottom: 25px;
+}
+
+.btn-inicio-sesion {
+    position: relative;
+    width: 50%;
+    height: 45px;
+    margin-bottom: 25px;
+    background: #77dd77;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    border-radius: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #fff;
 }
 
 .login .input-group input {
@@ -61,23 +83,10 @@ body {
     left: 12px;
     font-size: 12px;
     padding: 2px 4px;
-    border: 1px solid #000;
-    background: #03396c;
+    /* border: 1px solid #000; */
+    background: #77dd77;
     color: #fff;
-}
-
-.login .input-group input[type="submit"] {
-    background: #03396c;
-    border: none;
-    box-shadow: none;
-    cursor: pointer;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: #fff;
-}
-
-.login .input-group input[type="submit"]:hover {
-    background: #ffc107;
+    border-radius: 10px;
 }
 
 .login a {
@@ -94,6 +103,6 @@ body {
     font-weight: 600;
 }
 
-.login a span:hover {
-    color: #ffc107;
+.btn-inicio-sesion:hover {
+    background-color: #006239;
 }
