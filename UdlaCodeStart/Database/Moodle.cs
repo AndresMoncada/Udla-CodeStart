@@ -13,7 +13,8 @@ namespace Database
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdMoodle { get; set; }
-        public string Name { get; set; }
-        public int Status { get; set; }
+        public string? Name { get; set; }
+        public int? Status { get; set; }
+        public string? UrlImg { get; set; }
     }
 }
