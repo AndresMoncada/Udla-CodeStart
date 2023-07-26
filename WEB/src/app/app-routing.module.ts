@@ -9,14 +9,9 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "",
-    redirectTo: "dashboard"
+    path: "*",
+    redirectTo: "login"
   },
-  {
-    path: "dashboard",
-    component: DashboardComponent
-  },
-  
   {
     path: "dashboard",
     component: DashboardComponent
