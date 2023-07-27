@@ -1,0 +1,135 @@
+.sidenav-container {
+  height: 100%;
+  padding-left: 1em;
+}
+
+.sidenav {
+  width: 280px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #77dd77;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-content {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+img {
+  width: 90px;
+  margin-top: 4px;
+}
+
+.img2 {
+  width: 190px;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: right;
+  width: 700px;
+}
+
+.mat-mdc-fab.mat-accent,
+.mat-mdc-mini-fab.mat-accent {
+  --mdc-fab-container-color: #181818;
+  --mdc-fab-icon-color: #fff;
+  --mat-mdc-fab-color: #fff;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.subheader {
+  font-style: italic;
+  font-size: 15px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.divImg {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgExample {
+  max-width: 100%;
+  max-height: 300px;
+  border: 1px solid #ccc;
+}
+
+.icon-eye {
+  font-size: 24px;
+}
+
+.grid-container {
+  margin: 80px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.dashboard-card-content-Topic {
+  text-align: center;
+  margin-top: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.card-footer{
+  font-size: 18px;
+  text-align: justify;
+  padding: 1em 3em 3em 3em;
+  line-height: 2;
+}
+
+.card-footer-Topic{
+  font-size: 18px;
+  text-align: justify;
+  line-height: 2;
+  padding: 0 1em;
+  margin:0;
+}
+
+.nuevo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.redirectTo{
+  cursor: pointer;
+}
+

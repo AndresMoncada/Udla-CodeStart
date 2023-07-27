@@ -1,7 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-    <mat-toolbar style="margin-left: 90px;"> 
+    <mat-toolbar style="margin-left: 90px;">
     Usuario
     </mat-toolbar>
     <mat-nav-list>
@@ -11,12 +11,10 @@
     </mat-nav-list>
     <mat-list>
       <div class="subheader">Aprendizaje</div>
-      <mat-list-item class="item-content" *ngFor="let aprendizaje of aprendizaje">
+      <mat-list-item class="item-content" *ngFor="let aprendizaje of moodleComboBox">
         <a mat-list-item href="#">
           {{ aprendizaje.name }}
-          <mat-icon class="icon-class">
-            {{ aprendizaje.icon }}
-          </mat-icon>
+            <fa-icon [icon]="faStar" class="icon-eye" style="font-size: 10px; padding-bottom: 10px;"></fa-icon>
         </a>
       </mat-list-item>
       <mat-divider></mat-divider>
@@ -37,7 +35,7 @@
       </button>
       <span><img src='{{imagenURL}}'><img class="img2" src='{{imagenURL2}}'></span>
       <div class="example-button-container">
-        <button mat-mini-fab aria-label="Salir" >
+        <button mat-mini-fab aria-label="Salir" (click)="exitApp()" >
           <mat-icon>exit_to_app</mat-icon>
         </button>
       </div>

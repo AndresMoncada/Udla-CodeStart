@@ -1,0 +1,113 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar style="margin-left: 20px;">
+      DATOS
+    </mat-toolbar>
+    <mat-nav-list>
+      <mat-divider></mat-divider>
+      <div class="subheader">Contenido </div>
+      <a mat-list-item href="#">Introducción</a>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+    <mat-list *ngFor="let topic of topicComboBox">
+      <a class="subheader" (click)="scrollToCard(topic.idTopic)">
+        {{ topic.name }}
+        <fa-icon [icon]="faStar" class="icon-eye" style="font-size: 10px; padding-bottom: 10px;">
+        </fa-icon>
+      </a>
+      <mat-list-item class="item-content" *ngFor="let subIndice of subIndice">
+        <a mat-list-item href="#">
+          {{ subIndice.name }}
+        </a>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <a class="redirectTo" (click)="loginToDashboard()">
+        <span><img src='{{imagenURL}}'><img class="img2" src='{{imagenURL2}}'></span>
+      </a>
+      <div class="example-button-container">
+        <button mat-mini-fab aria-label="Salir" (click)="exitApp()">
+          <mat-icon>exit_to_app</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar>
+
+
+    <!-- //Desde aquí -->
+    <div class="grid-container">
+      <mat-grid-list cols="2">
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-card class="dashboard-card">
+            <mat-card-content class="dashboard-card-content">
+              <div class="nuevo">
+                <p style="font-weight: bold; font-size: 25px;">Introducción</p>
+              </div>
+              <mat-divider></mat-divider>
+              <div class="card-footer">
+                <p calss="texto-cont">
+                  Bienvenidos al módulo "Datos". Aquí, exploraremos uno de los pilares fundamentales de la
+                  tecnología moderna: los datos.
+                  Los datos son una parte esencial de nuestra vida cotidiana y desempeñan un papel crucial en el mundo
+                  digital que nos rodea.
+                  En este módulo, aprenderemos qué son los datos, su importancia y cómo se clasifican en diferentes
+                  tipos.
+                  Comprenderemos la diferencia entre datos e información, ya que a menudo estos términos pueden
+                  confundirse.
+                  Nuestro objetivo es proporcionarte una base sólida en cuanto a la comprensión de datos, su variedad y
+                  su uso en la generación de información significativa.
+                  Al final de este módulo, estarás equipado con los conceptos y ejemplos básicos para apreciar y
+                  explorar el emocionante mundo de los datos.
+                </p>
+                <p style="font-style: italic; text-align: center;">¡Comencemos nuestro viaje hacia el conocimiento y el
+                  entendimiento de los datos!</p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+
+    <div class="grid-container" id="prueba">
+      <mat-grid-list cols="2">
+        <mat-grid-tile *ngFor="let topic of topicComboBox" [colspan]="2" [rowspan]="1">
+          <mat-card style="margin-bottom: 20px;" class="dashboard-card">
+            <mat-card-content class="dashboard-card-content-Topic" id="{{topic.idTopic}}">
+              <div class="nuevo">
+                <p style="font-weight: bold; font-size: 25px;">{{ topic.name }}</p>
+              </div>
+              <mat-divider></mat-divider> <!-- Movido fuera del *ngFor -->
+              <div *ngFor="let concept of conceptComboBox" class="card-footer-Topic">
+                <div *ngIf="concept.idTopic == topic.idTopic">
+                  <p class="card-footer-Topic">{{concept.description}}</p>
+                </div>
+              </div>
+              <br><br>
+              <div *ngIf="getFilteredExamples(topic.idTopic)">
+                <p style="font-weight: bold; font-size: 25px;"> Ejemplos</p>
+              </div>
+              <div *ngFor="let examples of examplesComboBox" class="card-footer-Topic">
+                <br>
+                <div *ngIf="examples.idTopic == topic.idTopic">
+                  <p class="card-footer-Topic">{{examples.description}}</p>
+                  <div *ngIf="examples.url" class="divImg">
+                    <span><img class="imgExample" src='{{examples.url}}'></span>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

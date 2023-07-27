@@ -6,6 +6,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DialogExamComponent } from './pages/dialog-exam-component/dialog-exam.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavigationComponent } from './navigation/navigation.component';
+import { NavigationComponentModule } from './pages/module-theme/navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -18,15 +19,23 @@ import { DashboardComponent2 } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NavigationModuleOperadorComponent } from './pages/module-theme copy/navigation/navigation.component';
+import { NavigationModuleJerarquiaComponent } from './pages/module-theme copy 2/navigation/navigation.component';
+import { NavigationModuleEvaluacionComponent } from './pages/module-theme copy 3/navigation/navigation.component';
 
 @NgModule({
   declarations: [
-    AppComponent, 
+    AppComponent,
     LoginComponent,
     DashboardComponent,
     DialogExamComponent,
     NavigationComponent,
     DashboardComponent2,
+    NavigationComponentModule,
+    NavigationModuleOperadorComponent,
+    NavigationModuleJerarquiaComponent,
+    NavigationModuleEvaluacionComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +52,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatMenuModule,
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
