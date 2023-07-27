@@ -3,12 +3,11 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { UcsService } from '../../../services/ucs.service';
-import { Module } from '../../../dashboard/models/Module.model';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { Topic } from '../models/Topic.model';
-import { Concept } from '../models/Concept.model';
 import { Router } from '@angular/router';
-import { Example } from '../models/Example.model';
+import { Topic } from 'src/app/models/Topic.model';
+import { Concept } from 'src/app/models/Concept.model';
+import { Example } from 'src/app/models/Example.model';
 
 export interface Section {
   name: string;

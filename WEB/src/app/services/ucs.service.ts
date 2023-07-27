@@ -1,11 +1,11 @@
 import { environment } from "src/environments/environments";
-import { Module } from "../dashboard/models/Module.model";
-import { HttpClient } from "@angular/common/http"; 7
+import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
-import { Topic } from "../pages/module-theme/models/Topic.model";
-import { Concept } from "../pages/module-theme/models/Concept.model";
-import { Example } from "../pages/module-theme/models/Example.model";
+import { Topic } from 'src/app/models/Topic.model';
+import { Concept } from 'src/app/models/Concept.model';
+import { Example } from 'src/app/models/Example.model';
+import { Module } from "../models/Module.model";
 
 @Injectable({
   providedIn: 'root'

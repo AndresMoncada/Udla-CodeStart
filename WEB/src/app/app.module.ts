@@ -5,7 +5,6 @@ import { LoginComponent } from './pages/login-form/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DialogExamComponent } from './pages/dialog-exam-component/dialog-exam.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NavigationComponent } from './navigation/navigation.component';
 import { NavigationComponentModule } from './pages/module-theme/navigation/navigation.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,7 +14,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-import { DashboardComponent2 } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,8 +28,6 @@ import { NavigationModuleEvaluacionComponent } from './pages/module-theme copy 3
     LoginComponent,
     DashboardComponent,
     DialogExamComponent,
-    NavigationComponent,
-    DashboardComponent2,
     NavigationComponentModule,
     NavigationModuleOperadorComponent,
     NavigationModuleJerarquiaComponent,

@@ -1,1 +1,67 @@
-<app-navigation></app-navigation>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar style="margin-left: 90px;">
+      <fa-icon [icon]="faUser" class="icon-eye"></fa-icon>
+    Usuario
+    </mat-toolbar>
+    <mat-nav-list>
+      <mat-divider></mat-divider>
+      <a mat-list-item href="#">Inicio</a>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+    <mat-list>
+      <div class="subheader">Aprendizaje</div>
+      <mat-list-item class="item-content" *ngFor="let aprendizaje of moodleComboBox">
+        <a mat-list-item (click)="goToModule(aprendizaje.name)">
+          {{ aprendizaje.name }}
+            <fa-icon [icon]="faStar" class="icon-eye" style="font-size: 10px; padding-bottom: 10px;"></fa-icon>
+        </a>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <div class="subheader">Preferencias</div>
+      <mat-list-item class="item-content" *ngFor="let preferencias of preferencias">
+        <a mat-list-item href="#">
+          {{ preferencias.name }}
+        </a>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span><img src='{{imagenURL}}'><img class="img2" src='{{imagenURL2}}'></span>
+      <div class="example-button-container">
+        <button mat-mini-fab aria-label="Salir" (click)="exitApp()" >
+          <mat-icon>exit_to_app</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <div class="grid-container">
+      <h1 class="mat-h1">Aprendizaje fuera</h1>
+      <mat-grid-list cols="2" rowHeight="350px">
+        <mat-grid-tile *ngFor="let card of moodleComboBox" [colspan]="1" [rowspan]="1   ">
+          <a class="redirectTo" (click)="goToModule(card.name)">
+          <mat-card class="dashboard-card">
+            <mat-card-content class="dashboard-card-content">
+              <div class = "nuevo">
+                <img class="example-header-image" src={{card.urlImg}} alt="Imagen módulo">
+              </div>
+            <mat-divider></mat-divider>
+              <div class="card-footer" >
+                <p style="font-weight: bold; font-size: 25px;">{{card.name}}</p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </a>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
