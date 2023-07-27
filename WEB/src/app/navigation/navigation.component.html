@@ -2,6 +2,7 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar style="margin-left: 90px;">
+      <fa-icon [icon]="faUser" class="icon-eye"></fa-icon>
     Usuario
     </mat-toolbar>
     <mat-nav-list>
@@ -12,7 +13,7 @@
     <mat-list>
       <div class="subheader">Aprendizaje</div>
       <mat-list-item class="item-content" *ngFor="let aprendizaje of moodleComboBox">
-        <a mat-list-item href="#">
+        <a mat-list-item (click)="goToModule(aprendizaje.name)">
           {{ aprendizaje.name }}
             <fa-icon [icon]="faStar" class="icon-eye" style="font-size: 10px; padding-bottom: 10px;"></fa-icon>
         </a>

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { UcsService } from '../services/ucs.service';
 import { Module } from '../dashboard/models/Module.model';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 
 export interface Section {
@@ -61,6 +61,7 @@ export class NavigationComponent {
   imagenURLIcon = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fpublicdomainvectors.org%2Fes%2Fvectoriales-gratuitas%2FIcono-de-Perfil-de-usuario%2F44927.html&psig=AOvVaw33gDiFmS2TxFs_bq38ptLU&ust=1690412303878000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMj45tj6qoADFQAAAAAdAAAAABAE';
 
   faStar = faStar;
+  faUser = faUser;
   moodleComboBox = new Array<Module>();
 
   constructor(private ucsService: UcsService
@@ -75,7 +76,10 @@ export class NavigationComponent {
       this.moodleComboBox = data;
     });
   }
-  exitApp(){
+  goToModule(direct: string) {
+    this.router.navigate([direct]);
+  }
+  exitApp() {
     this.router.navigate(['login']);
   }
 }
