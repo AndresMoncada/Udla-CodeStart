@@ -6,6 +6,8 @@ import { faStar, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { Module } from "src/app/models/Module.model";
 import { UcsService } from "src/app/services/ucs.service";
+import { AuthGuard } from 'src/app/auth/auth.guard';
+import { AuthService } from 'src/app/services/auth.service';
 
 export interface Section {
   name: string;
@@ -42,7 +44,8 @@ export class DashboardComponent implements OnInit {
   moodleComboBox = new Array<Module>();
 
   constructor(private ucsService: UcsService
-    , private router: Router) { }
+    , private router: Router
+    , private auth: AuthService) { }
 
   ngOnInit() {
     this.getAllMoodles();
@@ -57,6 +60,6 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([direct]);
   }
   exitApp() {
-    this.router.navigate(['login']);
+    this.auth.logOut();
   }
 }

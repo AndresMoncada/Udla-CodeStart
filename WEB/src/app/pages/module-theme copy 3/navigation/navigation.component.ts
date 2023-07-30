@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Topic } from 'src/app/models/Topic.model';
 import { Concept } from 'src/app/models/Concept.model';
 import { Example } from 'src/app/models/Example.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 export interface Section {
   name: string;
@@ -50,7 +51,8 @@ export class NavigationModuleEvaluacionComponent {
   examplesComboBox = new Array<Example>();
 
   constructor(private ucsService: UcsService,
-    private router: Router) { }
+    private router: Router,
+    private auth: AuthService) { }
 
   ngOnInit() {
     this.getAllTopics();
@@ -91,7 +93,7 @@ export class NavigationModuleEvaluacionComponent {
   loginToDashboard(){
     this.router.navigate(['dashboard']);
   }
-  exitApp(){
-    this.router.navigate(['login']);
+  exitApp() {
+    this.auth.logOut();
   }
 }

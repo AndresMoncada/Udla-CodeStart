@@ -6,6 +6,7 @@ import { NavigationComponentModule } from './pages/module-theme/navigation/navig
 import { NavigationModuleOperadorComponent } from './pages/module-theme copy/navigation/navigation.component';
 import { NavigationModuleJerarquiaComponent } from './pages/module-theme copy 2/navigation/navigation.component';
 import { NavigationModuleEvaluacionComponent } from './pages/module-theme copy 3/navigation/navigation.component';
+import { AuthGuard } from './auth/auth.guard';
 
 
 const routes: Routes = [
@@ -19,23 +20,28 @@ const routes: Routes = [
   },
   {
     path: "dashboard",
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: "Datos",
-    component: NavigationComponentModule
+    component: NavigationComponentModule,
+    canActivate:[AuthGuard]
   },
   {
     path: "Operadores",
-    component: NavigationModuleOperadorComponent
+    component: NavigationModuleOperadorComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: "Jerarquía de operadores",
-    component: NavigationModuleJerarquiaComponent
+    component: NavigationModuleJerarquiaComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: "Evaluación de expresiones",
-    component: NavigationModuleEvaluacionComponent
+    component: NavigationModuleEvaluacionComponent,
+    canActivate:[AuthGuard]
   }
 
 ];

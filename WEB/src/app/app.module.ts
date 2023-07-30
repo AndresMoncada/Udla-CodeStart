@@ -21,6 +21,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavigationModuleOperadorComponent } from './pages/module-theme copy/navigation/navigation.component';
 import { NavigationModuleJerarquiaComponent } from './pages/module-theme copy 2/navigation/navigation.component';
 import { NavigationModuleEvaluacionComponent } from './pages/module-theme copy 3/navigation/navigation.component';
+import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { NavigationModuleEvaluacionComponent } from './pages/module-theme copy 3
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

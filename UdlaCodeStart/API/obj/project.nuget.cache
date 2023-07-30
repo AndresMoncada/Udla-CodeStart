@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "aFFgAsWn0Na9UhAPCG0l3y2W0zJyKBVx85yMRQ9xFuknPOc6QbuXU5ozHmlDse9FPLP6ErpAgBRTUUwW/MPUmw==",
+  "dgSpecHash": "Js8eVt/yoUfPPZpqciGTA1esjrKK8II/699zRrAwqOWhaRGpZmHBHPRtgXlbewxYTusm3zLvhFJI5didjaoAeA==",
   "success": true,
   "projectFilePath": "C:\\Repositorios\\Udla-CodeStart\\UdlaCodeStart\\API\\WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\andre\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\andre\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.9\\microsoft.aspnetcore.authentication.jwtbearer.7.0.9.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.8\\microsoft.aspnetcore.openapi.7.0.8.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
