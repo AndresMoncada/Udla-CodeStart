@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { UcsService } from '../../../services/ucs.service';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Topic } from 'src/app/models/Topic.model';
 import { Concept } from 'src/app/models/Concept.model';
 import { Example } from 'src/app/models/Example.model';
@@ -50,18 +50,26 @@ export class NavigationComponentModule {
   conceptComboBox = new Array<Concept>();
   examplesComboBox = new Array<Example>();
 
+  idModule: number=1;
+
   constructor(private ucsService: UcsService,
     private router: Router,
-    private auth: AuthService) { }
+    private auth: AuthService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getAllTopics();
+    this.getDataUrl();
+    this.getAllTopics(this.idModule);
     this.getAllConcepts();
     this.getAllExamples();
   }
 
-  async getAllTopics(){
-    await this.ucsService.getTopicsById(1).subscribe(data =>{
+  getDataUrl(){
+    this.idModule = this.route.snapshot.params["id"];
+  }
+
+  async getAllTopics(id:number){
+    await this.ucsService.getTopicsById(id).subscribe(data =>{
       this.topicComboBox = data;
     });
   }
@@ -93,6 +101,7 @@ export class NavigationComponentModule {
   loginToDashboard(){
     this.router.navigate(['dashboard']);
   }
+
   exitApp() {
     this.auth.logOut();
   }

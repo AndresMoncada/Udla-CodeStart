@@ -3,20 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login-form/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NavigationComponentModule } from './pages/module-theme/navigation/navigation.component';
-import { NavigationModuleOperadorComponent } from './pages/module-theme copy/navigation/navigation.component';
-import { NavigationModuleJerarquiaComponent } from './pages/module-theme copy 2/navigation/navigation.component';
-import { NavigationModuleEvaluacionComponent } from './pages/module-theme copy 3/navigation/navigation.component';
 import { AuthGuard } from './auth/auth.guard';
 
 
 const routes: Routes = [
   {
     path: "",
-    component: LoginComponent
+    component: LoginComponent,
+    pathMatch:'full'
   },
   {
     path: "login",
-    component: LoginComponent
+    component: LoginComponent,
+    pathMatch:'full'
   },
   {
     path: "dashboard",
@@ -24,26 +23,10 @@ const routes: Routes = [
     canActivate:[AuthGuard]
   },
   {
-    path: "Datos",
+    path: "Module/:id",
     component: NavigationComponentModule,
     canActivate:[AuthGuard]
-  },
-  {
-    path: "Operadores",
-    component: NavigationModuleOperadorComponent,
-    canActivate:[AuthGuard]
-  },
-  {
-    path: "Jerarquía de operadores",
-    component: NavigationModuleJerarquiaComponent,
-    canActivate:[AuthGuard]
-  },
-  {
-    path: "Evaluación de expresiones",
-    component: NavigationModuleEvaluacionComponent,
-    canActivate:[AuthGuard]
   }
-
 ];
 
 @NgModule({

@@ -56,19 +56,19 @@ export class DashboardComponent implements OnInit {
     this.getUserName();
   }
 
-  getUserName(){
-    this.userStore.getUserNameFromStore().subscribe(data =>{
-      let userInfo = this.auth.getUserNameFromToken();
+  async getUserName(){
+    this.userStore.getUserNameFromStore().subscribe(async (data) => {
+      let userInfo = await this.auth.getUserNameFromToken();
       this.userName = data || userInfo;
     })
   }
   async getAllMoodles() {
-    await this.ucsService.getAllModules().subscribe(data => {
+    this.ucsService.getAllModules().subscribe(data => {
       this.moodleComboBox = data;
     });
   }
-  goToModule(direct: string) {
-    this.router.navigate([direct]);
+  goToModule(direct: string, idModulo: number) {
+    this.router.navigate(['Module', idModulo]);
   }
   exitApp() {
     this.auth.logOut();

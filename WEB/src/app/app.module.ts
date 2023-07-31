@@ -18,11 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NavigationModuleOperadorComponent } from './pages/module-theme copy/navigation/navigation.component';
-import { NavigationModuleJerarquiaComponent } from './pages/module-theme copy 2/navigation/navigation.component';
-import { NavigationModuleEvaluacionComponent } from './pages/module-theme copy 3/navigation/navigation.component';
 import { NgToastModule } from 'ng-angular-popup';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -30,10 +27,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
     LoginComponent,
     DashboardComponent,
     DialogExamComponent,
-    NavigationComponentModule,
-    NavigationModuleOperadorComponent,
-    NavigationModuleJerarquiaComponent,
-    NavigationModuleEvaluacionComponent
+    NavigationComponentModule
   ],
   imports: [
     BrowserModule,
@@ -50,7 +44,11 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
     MatMenuModule,
     HttpClientModule,
     FontAwesomeModule,
-    ToastrModule.forRoot()
+    ToastNoAnimationModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-top-rigth'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

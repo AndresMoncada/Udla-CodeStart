@@ -13,7 +13,7 @@
     <mat-list>
       <div class="subheader">Aprendizaje</div>
       <mat-list-item class="item-content" *ngFor="let aprendizaje of moodleComboBox">
-        <a mat-list-item (click)="goToModule(aprendizaje.name)">
+        <a mat-list-item (click)="goToModule(aprendizaje.name, aprendizaje.idMoodle)">
           {{ aprendizaje.name }}
             <fa-icon [icon]="faStar" class="icon-eye" style="font-size: 10px; padding-bottom: 10px;"></fa-icon>
         </a>
@@ -43,10 +43,10 @@
     </mat-toolbar>
     <!-- Add Content Here -->
     <div class="grid-container">
-      <h1 class="mat-h1">Aprendizaje fuera</h1>
+      <!-- <h1 class="mat-h1">Aprendizaje fuera</h1> -->
       <mat-grid-list cols="2" rowHeight="350px">
         <mat-grid-tile *ngFor="let card of moodleComboBox" [colspan]="1" [rowspan]="1   ">
-          <a class="redirectTo" (click)="goToModule(card.name)">
+          <a class="redirectTo" (click)="goToModule(card.name, card.idMoodle)">
           <mat-card class="dashboard-card">
             <mat-card-content class="dashboard-card-content">
               <div class = "nuevo">

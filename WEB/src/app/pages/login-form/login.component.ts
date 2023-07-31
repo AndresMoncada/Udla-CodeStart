@@ -5,6 +5,7 @@ import { AuthForm } from "src/app/models/Auth.model";
 import { AuthService } from "src/app/services/auth.service";
 import ValidateForm from "src/app/helper/validatorForm";
 import { NotificationService } from "src/app/services/notification.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "UCS-login",
@@ -29,11 +30,13 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private builder: FormBuilder,
     private auth: AuthService,
-    private notifyService : NotificationService
+    private notifyService : NotificationService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
     this.initForm();
+    this.redirectToDashboard();
   }
 
   initForm() {
@@ -49,6 +52,12 @@ export class LoginComponent implements OnInit {
         password: ['', Validators.required],
         email: ['', Validators.required]
       });
+  }
+
+  redirectToDashboard(){
+    if(this.auth.isLoggedIn()){
+      this.router.navigate(['dashboard']);
+    }
   }
 
   mostrarContenedor(contenedor: string) {
@@ -75,7 +84,6 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['dashboard']);
         },
         error: (err) => {
-          console.log(err);
           this.notifyService.error(err.error.message, "Parece que algo va mal");
         }
       });
