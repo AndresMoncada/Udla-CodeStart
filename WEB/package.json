@@ -25,7 +25,9 @@
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "boostrap": "^2.0.0",
+    "css-loader": "^6.8.1",
     "ng-angular-popup": "^0.4.7",
+    "ngx-toastr": "^17.0.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

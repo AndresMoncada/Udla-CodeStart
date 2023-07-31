@@ -3,7 +3,7 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar style="margin-left: 90px;">
       <fa-icon [icon]="faUser" class="icon-eye"></fa-icon>
-    Usuario
+    <p>{{userName}}</p>
     </mat-toolbar>
     <mat-nav-list>
       <mat-divider></mat-divider>

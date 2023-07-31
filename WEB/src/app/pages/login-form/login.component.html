@@ -2,26 +2,59 @@
 
   <div class="twoCards">
 
-      <div class="intro">
-        <p>Bienvenido a UdlaCodeStart</p>
-        <p> </p>
-      </div>
-    <div class="login">
+    <div class="intro">
+
       <img src='{{imagenURL}}'>
-      <form [formGroup]="form">
-        <div class="input-group">
-          <input type="text" formControlName="userName" required="required" />
-          <span>Usuario</span>
-        </div>
-        <div class="input-group">
-          <input type="password" formControlName="password" required="required" />
-          <span>Contraseña</span>
-        </div>
-        <div>
-          <button class="btn-inicio-sesion" (click)="loginToDashboard()">Iniciar sesion</button>
-        </div>
-      </form>
-      <p>Iniciar sesión con google</p>
+      <h1>¡Bienvenido!</h1>
+      <p>
+        En este espacio, descubrirás los secretos de la Lógica y Algoritmos I. Explora conceptos fundamentales y
+        desafíate con ejercicios prácticos.</p>
+      <p> ¡Empecemos a aprender juntos! ¡Bienvenido a UDLA Code Start!</p>
+    </div>
+    <div class="login">
+
+      <div class="lb-header">
+        <a href="#" [class.active]="!mostrarRegistro" id="login-box-link" (click)="mostrarContenedor('inicioSesion')">Iniciar sesión</a>
+        <a href="#" [class.active]="mostrarRegistro" id="signup-box-link" (click)="mostrarContenedor('registro')">Registrarse</a>
+      </div>
+
+      <div class="login-container" *ngIf="!mostrarRegistro">
+        <form [formGroup]="form">
+          <div class="input-group">
+            <input type="text" formControlName="userName" class="form-control" />
+            <span>Usuario</span>
+          </div>
+          <div class="input-group">
+            <input type="password" formControlName="password" class="form-control" />
+            <span>Contraseña</span>
+          </div>
+          <div>
+            <button class="btn-inicio-sesion" (click)="loginToDashboard()">Iniciar sesion</button>
+          </div>
+        </form>
+        <p class="forgot-password">Olvidaste tu contraseña?</p>
+      </div>
+
+      <div class="login-container"  *ngIf="mostrarRegistro">
+        <form [formGroup]="signUpForm">
+          <div class="input-group">
+            <input type="text" formControlName="userName" class="form-control" />
+            <span>Usuario</span>
+          </div>
+          <div class="input-group">
+            <input type="password" formControlName="password" class="form-control" />
+            <span>Contraseña</span>
+          </div>
+          <div class="input-group">
+            <input type="text" formControlName="email" class="form-control" />
+            <span>Email</span>
+          </div>
+          <div>
+            <button class="btn-inicio-sesion" (click)="register()">Registrarse</button>
+          </div>
+        </form>
+      </div>
+
     </div>
   </div>
 

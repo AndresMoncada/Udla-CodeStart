@@ -8,6 +8,7 @@ import { Module } from "src/app/models/Module.model";
 import { UcsService } from "src/app/services/ucs.service";
 import { AuthGuard } from 'src/app/auth/auth.guard';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserStoreService } from 'src/app/services/userStore.service';
 
 export interface Section {
   name: string;
@@ -43,14 +44,24 @@ export class DashboardComponent implements OnInit {
   faUser = faUser;
   moodleComboBox = new Array<Module>();
 
+  userName: string = "No toma";
+
   constructor(private ucsService: UcsService
     , private router: Router
-    , private auth: AuthService) { }
+    , private auth: AuthService
+    , private userStore: UserStoreService) { }
 
   ngOnInit() {
     this.getAllMoodles();
+    this.getUserName();
   }
 
+  getUserName(){
+    this.userStore.getUserNameFromStore().subscribe(data =>{
+      let userInfo = this.auth.getUserNameFromToken();
+      this.userName = data || userInfo;
+    })
+  }
   async getAllMoodles() {
     await this.ucsService.getAllModules().subscribe(data => {
       this.moodleComboBox = data;

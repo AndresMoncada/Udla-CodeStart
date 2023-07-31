@@ -22,6 +22,7 @@ import { NavigationModuleOperadorComponent } from './pages/module-theme copy/nav
 import { NavigationModuleJerarquiaComponent } from './pages/module-theme copy 2/navigation/navigation.component';
 import { NavigationModuleEvaluacionComponent } from './pages/module-theme copy 3/navigation/navigation.component';
 import { NgToastModule } from 'ng-angular-popup';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -47,11 +48,9 @@ import { NgToastModule } from 'ng-angular-popup';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    BrowserModule,
-    BrowserAnimationsModule,
     HttpClientModule,
     FontAwesomeModule,
-    NgToastModule
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

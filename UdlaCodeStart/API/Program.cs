@@ -28,11 +28,12 @@ builder.Services.AddDbContext<UcsContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("UcsConnection"))
 );
 
-builder.Services.AddAuthentication(d =>
+builder.Services.AddAuthentication(x =>
 {
-    d.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    d.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer( x => {
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(x =>
+{
     x.RequireHttpsMetadata = false;
     x.SaveToken = true;
     x.TokenValidationParameters = new TokenValidationParameters
@@ -40,7 +41,7 @@ builder.Services.AddAuthentication(d =>
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("veryverysecret.....")),
         ValidateAudience = false,
-        ValidateIssuer = false
+        ValidateIssuer = false,
     };
 }); 
 

@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environments";
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
@@ -10,34 +11,50 @@ import { environment } from "src/environments/environments";
 export class AuthService {
 
   private baseUrl = environment.apiBaseUrl;
+  private userPayload: any;
+
 
   constructor(
     private http: HttpClient,
     private router: Router
-  ) { }
-
-  logIn(userObj: any){
-    return this.http.post<any>(`${this.baseUrl}/User/authenticate`, userObj);
+  ) {
+    this.userPayload = this.decodeToken();
   }
 
-  signUp(userObj: any){
-    return this.http.post<any>(`${this.baseUrl}/User/register`, userObj);
+  logIn(logObj: any) {
+    return this.http.post<any>(`${this.baseUrl}/User/authenticate`, logObj);
   }
 
-  storeToken(token: string){
+  signUp(userObj: any) {
+    return this.http.post<any>(`${this.baseUrl}/User/addUser`, userObj);
+  }
+
+  storeToken(token: string) {
     localStorage.setItem('token', token);
   }
 
-  getToken(){
+  getToken() {
     return localStorage.getItem('token');
   }
 
-  isLoggedIn(): boolean{
+  isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
 
-  logOut(){
+  logOut() {
     localStorage.clear();
     this.router.navigate(['login']);
   }
+
+  decodeToken() {
+    const jwtHelper = new JwtHelperService();
+    const actualToken = this.getToken();
+    return jwtHelper.decodeToken(actualToken ?? "");
+  }
+
+  getUserNameFromToken() {
+    if (this.userPayload)
+      return this.userPayload.unique_name;
+  }
 }
+
