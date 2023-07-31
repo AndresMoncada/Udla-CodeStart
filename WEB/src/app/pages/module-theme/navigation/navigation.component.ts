@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, NgModule, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -20,7 +20,7 @@ export interface Section2 {
 
 @Component({
   selector: 'app-navigation-module',
-  templateUrl:'./navigation.component.html',
+  templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
 
@@ -50,7 +50,10 @@ export class NavigationComponentModule {
   conceptComboBox = new Array<Concept>();
   examplesComboBox = new Array<Example>();
 
-  idModule: number=1;
+  currentIndex = 0;
+  currentTopic: Topic;
+
+  idModule: number = 1;
 
   constructor(private ucsService: UcsService,
     private router: Router,
@@ -62,26 +65,29 @@ export class NavigationComponentModule {
     this.getAllTopics(this.idModule);
     this.getAllConcepts();
     this.getAllExamples();
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
   }
 
-  getDataUrl(){
+  getDataUrl() {
     this.idModule = this.route.snapshot.params["id"];
   }
 
-  async getAllTopics(id:number){
-    await this.ucsService.getTopicsById(id).subscribe(data =>{
+  async getAllTopics(id: number) {
+    await this.ucsService.getTopicsById(id).subscribe(data => {
       this.topicComboBox = data;
     });
   }
 
-  getAllConcepts(){
-    this.ucsService.getConceptsById().subscribe(data =>{
+  getAllConcepts() {
+    this.ucsService.getConceptsById().subscribe(data => {
       this.conceptComboBox = data;
     });
   }
 
-  getAllExamples(){
-    this.ucsService.getExamplesById().subscribe(data =>{
+  getAllExamples() {
+    this.ucsService.getExamplesById().subscribe(data => {
       this.examplesComboBox = data;
     });
   }
@@ -94,15 +100,16 @@ export class NavigationComponentModule {
   scrollToCard(idTopic: number) {
     const element = document.getElementById(idTopic.toString());
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth',block: 'center' });
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }
 
-  loginToDashboard(){
+  loginToDashboard() {
     this.router.navigate(['dashboard']);
   }
 
   exitApp() {
     this.auth.logOut();
   }
+
 }

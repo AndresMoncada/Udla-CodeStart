@@ -18,8 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgToastModule } from 'ng-angular-popup';
 import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,8 @@ import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-top-rigth'
-    })
+    }),
+    YouTubePlayerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
