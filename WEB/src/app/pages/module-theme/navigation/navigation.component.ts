@@ -9,6 +9,8 @@ import { Topic } from 'src/app/models/Topic.model';
 import { Concept } from 'src/app/models/Concept.model';
 import { Example } from 'src/app/models/Example.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogExamComponent } from '../../dialog-exam-component/dialog-exam.component';
 
 export interface Section {
   name: string;
@@ -58,7 +60,8 @@ export class NavigationComponentModule {
   constructor(private ucsService: UcsService,
     private router: Router,
     private auth: AuthService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.getDataUrl();
@@ -112,4 +115,33 @@ export class NavigationComponentModule {
     this.auth.logOut();
   }
 
+  openExamModule() {
+    // let hasValue: boolean = this.checkIfParameterHasValue();
+    //let offsetSelect: number = 21;
+    let width: string = 1000 + "px";
+    let heigth: string = 600 + "px";
+    const dialogRef = this.dialog.open(DialogExamComponent, {
+      disableClose: false,
+      backdropClass: 'for-dialog-class',
+      // width: width,
+      // height: heigth,
+      data: {
+        widthHeader: width,
+        templateNumber: 1,
+        backgroundColor: "green",
+        idModule: this.idModule
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      // if (result) {
+      //   this.servicioAlistamientoParam = result.parametersPorRadicar;
+      //   this.filterHasValue = this.checkIfParameterHasValue();
+      //   if (this.filterHasValue || (!this.filterHasValue && hasValue)) {
+      //     this.getServicioResumen();
+      //   }
+      // }
+    });
+
+  }
 }

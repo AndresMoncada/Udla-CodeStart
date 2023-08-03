@@ -1,0 +1,20 @@
+<div class="container">
+  <h2 mat-dialog-title>Evaluación</h2>
+  <mat-dialog-content class="mat-typography">
+    <!-- <label id="example-radio-group-label">¿Qué tipo de dato representa valores lógicos, como verdadero o falso?</label> -->
+    <div class="example-radio-group-label" *ngFor="let question of questionComboBox">
+      {{question.description}}
+      <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
+        <mat-radio-button class="example-radio-button" *ngFor="let answer of answerComboBox" [value]="answer.idAnswer">
+          <div *ngIf="question.idQuestion === answer.idQuestion">
+            {{ answer.description }}
+          </div>
+        </mat-radio-button>
+      </mat-radio-group>
+      <div class="respuesta-correcta">Respuesta Correcta</div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Finalizar</button>
+  </mat-dialog-actions>
+</div>

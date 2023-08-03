@@ -20,6 +20,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {NgFor} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -44,6 +48,10 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     MatMenuModule,
     HttpClientModule,
     FontAwesomeModule,
+    MatRadioModule,
+    NgFor,
+    FormsModule,
+    MatDialogModule,
     ToastNoAnimationModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 5000,

@@ -1,7 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-    <mat-toolbar style="margin-left: 90px;">
+    <mat-toolbar>
       <fa-icon [icon]="faUser" class="icon-eye"></fa-icon>
     <p>{{userName}}</p>
     </mat-toolbar>
@@ -28,6 +28,7 @@
       <mat-divider></mat-divider>
     </mat-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"

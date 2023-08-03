@@ -6,6 +6,8 @@ import { Topic } from 'src/app/models/Topic.model';
 import { Concept } from 'src/app/models/Concept.model';
 import { Example } from 'src/app/models/Example.model';
 import { Module } from "../models/Module.model";
+import { Question } from "../models/Question.model";
+import { Answer } from "../models/Answer.mode";
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +34,13 @@ export class UcsService {
 
   getExamplesById(): Observable<Example[]> {
     return this.http.get<Example[]>(`${this.baseUrl}/Example/getExamples`);
+  }
+
+  getAllQuestionsById(idMoodle: number): Observable<Question[]> {
+    return this.http.get<Question[]>(`${this.baseUrl}/Exam/getAllQuestionsById/${idMoodle}`);
+  }
+
+  getAllAnswerById(): Observable<Answer[]> {
+    return this.http.get<Answer[]>(`${this.baseUrl}/Exam/getAllAnswerById`);
   }
 }
