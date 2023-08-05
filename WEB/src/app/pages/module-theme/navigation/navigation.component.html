@@ -13,7 +13,7 @@
     <mat-list *ngFor="let topic of topicComboBox">
       <a class="subheader" (click)="scrollToCard(topic.idTopic)">
         {{ topic.name }}
-        <fa-icon [icon]="faStar" class="icon-eye" style="font-size: 10px; padding-bottom: 10px;">
+        <fa-icon [icon]="faStar" class="icon-eye" style="font-size: 10px;">
         </fa-icon>
       </a>
       <mat-list-item class="item-content" *ngFor="let subIndice of subIndice">

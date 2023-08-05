@@ -1,68 +1,109 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+
+  <mat-sidenav #drawer class="sidenav" [(opened)]="opened">
+
     <mat-toolbar>
       <fa-icon [icon]="faUser" class="icon-eye"></fa-icon>
-    <p>{{userName}}</p>
+      <p>{{userName}}</p>
     </mat-toolbar>
+
     <mat-nav-list>
-      <mat-divider></mat-divider>
-      <a mat-list-item href="#">Inicio</a>
-      <mat-divider></mat-divider>
     </mat-nav-list>
+
     <mat-list>
+      <!-- <div class="subheader">Inicio</div>
+      <mat-divider></mat-divider> -->
+
       <div class="subheader">Aprendizaje</div>
       <mat-list-item class="item-content" *ngFor="let aprendizaje of moodleComboBox">
-        <a mat-list-item (click)="goToModule(aprendizaje.name, aprendizaje.idMoodle)">
+        <a mat-list-item (click)="goToModule(aprendizaje.name, aprendizaje.idMoodle)" class="list-item-content">
+          <fa-icon [icon]="faStar"></fa-icon>
           {{ aprendizaje.name }}
-            <fa-icon [icon]="faStar" class="icon-eye" style="font-size: 10px; padding-bottom: 10px;"></fa-icon>
         </a>
       </mat-list-item>
       <mat-divider></mat-divider>
+
       <div class="subheader">Preferencias</div>
       <mat-list-item class="item-content" *ngFor="let preferencias of preferencias">
         <a mat-list-item href="#">
           {{ preferencias.name }}
         </a>
       </mat-list-item>
-      <mat-divider></mat-divider>
     </mat-list>
+
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span><img src='{{imagenURL}}'><img class="img2" src='{{imagenURL2}}'></span>
+
+    <mat-toolbar color="primary" class="nav-top">
+      <div>
+        <button mat-mini-fab (click)="opened=!opened" class="menuBar">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <!-- <span><img src='{{imagenURL}}'>Udla Code<b>Start</b></span> -->
       <div class="example-button-container">
-        <button mat-mini-fab aria-label="Salir" (click)="exitApp()" >
+        <button mat-mini-fab (click)="exitApp()">
           <mat-icon>exit_to_app</mat-icon>
         </button>
       </div>
     </mat-toolbar>
-    <!-- Add Content Here -->
+
     <div class="grid-container">
-      <!-- <h1 class="mat-h1">Aprendizaje fuera</h1> -->
-      <mat-grid-list cols="2" rowHeight="350px">
-        <mat-grid-tile *ngFor="let card of moodleComboBox" [colspan]="1" [rowspan]="1   ">
-          <a class="redirectTo" (click)="goToModule(card.name, card.idMoodle)">
-          <mat-card class="dashboard-card">
-            <mat-card-content class="dashboard-card-content">
-              <div class = "nuevo">
-                <img class="example-header-image" src={{card.urlImg}} alt="Imagen módulo">
-              </div>
-            <mat-divider></mat-divider>
-              <div class="card-footer" >
-                <p style="font-weight: bold; font-size: 25px;color:black">{{card.name}}</p>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </a>
-        </mat-grid-tile>
-      </mat-grid-list>
+
+      <mat-card class="card-content">
+        <mat-grid-list cols="4" rowHeight="300px">
+
+          <mat-grid-tile *ngFor="let card of moodleComboBox" [colspan]="1" [rowspan]="1">
+            <a class="redirectTo" (click)="goToModule(card.name, card.idMoodle)">
+              <mat-card class="dashboard-card">
+                <mat-card-content class="dashboard-card-content">
+                  <div class="nuevo">
+                    <img class="example-header-image" src={{card.urlImg}} alt="Imagen módulo">
+                  </div>
+                  <mat-divider></mat-divider>
+                  <div class="card-footer">
+                    <p style="font-weight: bold; font-size: 18px;color:black">{{card.name}}</p>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </a>
+          </mat-grid-tile>
+
+        </mat-grid-list>
+      </mat-card>
+    </div>
+
+    <div class="grid-container">
+      <mat-card class="welcome-card">
+        <mat-card-header class="card-header-welcome">
+          <mat-card-title class="title-welcome">Bienvenido a Udla CodeStart</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="content-welcome">
+          <p>En Udla CodeStart, te ofrecemos una experiencia educativa única y envolvente, diseñada para que puedas
+            explorar, aprender y dominar los fundamentos esenciales de la programación de manera divertida y práctica.
+          </p>
+          <p>Nuestro contenido de alta calidad y nuestros ejercicios interactivos te permitirán sumergirte en los temas
+            de:</p>
+          <ul>
+            <li>Datos</li>
+            <li>Operadores</li>
+            <li>Jerarquía de Operadores</li>
+            <li>Evaluación de Expresiones</li>
+          </ul>
+          <p>Sumérgete en un viaje de conocimiento que te llevará a dominar la lógica y la resolución de problemas.
+            Prepárate para desafiar tus habilidades y alcanzar nuevos niveles de comprensión mientras te adentras en el
+            mundo de la programación.</p>
+          <p>No importa si eres principiante o si ya tienes algún conocimiento previo en programación, en Udla CodeStart
+            encontrarás el apoyo que necesitas para avanzar en tu camino hacia el dominio de la lógica de programación y
+            la resolución de problemas.</p>
+          <p>¡Prepárate para un emocionante viaje de aprendizaje! Únete a nuestra comunidad y comienza a desarrollar tus
+            habilidades en programación hoy mismo.</p>
+        </mat-card-content>
+      </mat-card>
+
     </div>
 
   </mat-sidenav-content>
+
 </mat-sidenav-container>

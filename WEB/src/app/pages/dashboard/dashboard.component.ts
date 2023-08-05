@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { faStar, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faStar, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { Module } from "src/app/models/Module.model";
 import { UcsService } from "src/app/services/ucs.service";
@@ -23,11 +23,7 @@ export class DashboardComponent implements OnInit {
 
   private breakpointObserver = inject(BreakpointObserver);
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
+  opened: boolean = true;
 
   preferencias: Section[] = [
     {
@@ -42,6 +38,7 @@ export class DashboardComponent implements OnInit {
 
   faStar = faStar;
   faUser = faUser;
+  faBars = faBars;
   moodleComboBox = new Array<Module>();
 
   userName: string = "No toma";
