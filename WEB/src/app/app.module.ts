@@ -20,10 +20,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 import { YouTubePlayerModule } from '@angular/youtube-player';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
-import {NgFor} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatRadioModule } from '@angular/material/radio';
+import { ChangeBgDirective } from './change-bg.directive';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {MatRadioModule} from '@angular/material/radio';
     LoginComponent,
     DashboardComponent,
     DialogExamComponent,
-    NavigationComponentModule
+    NavigationComponentModule,
+    ChangeBgDirective
   ],
   imports: [
     BrowserModule,

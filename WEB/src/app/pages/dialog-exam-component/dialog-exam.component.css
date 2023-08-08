@@ -1,25 +1,58 @@
-.example-radio-group {
+.container {
+  border-radius: 100px;
+  width: 800px;
+}
+
+.info-ini {
+  padding: 2em;
   display: flex;
-  flex-direction: column;
-  margin: 15px 0;
-  align-items: flex-start;
+  justify-content: space-between;
+  color: white;
+  background-color: #2ab451;
 }
 
-.example-radio-button {
-  margin: 5px;
+.info-general {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 12px;
 }
 
-h2{
-  text-align: center;
+.custom-icon {
+  display: flex;
+  justify-content: space-between;
 }
 
-.respuesta-correcta {
+button{
+  font-size: 24px;
   color: green;
-  font-weight: bold;
-  font-size: 14px;
+  border:none;
+  background: inherit;
 }
 
-.container{
-  padding: 1em;
-  border-radius: 40px;
+.card {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 100px;
+}
+
+.data{
+  padding: 2em;
+}
+
+li {
+  list-style-type: none;
+  cursor: pointer;
+  margin: 10px 0;
+  border: none;
+}
+
+li .card:hover {
+  border: 1px solid rgb(0, 255, 38);
+}
+
+ol {
+  padding: 0;
 }

@@ -2,11 +2,10 @@ import { Component, OnInit, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { faBars, faStar, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faStar, faUser, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { Module } from "src/app/models/Module.model";
 import { UcsService } from "src/app/services/ucs.service";
-import { AuthGuard } from 'src/app/auth/auth.guard';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserStoreService } from 'src/app/services/userStore.service';
 
@@ -23,7 +22,7 @@ export class DashboardComponent implements OnInit {
 
   private breakpointObserver = inject(BreakpointObserver);
 
-  opened: boolean = true;
+  opened: boolean = false;
 
   preferencias: Section[] = [
     {
@@ -37,7 +36,7 @@ export class DashboardComponent implements OnInit {
   imagenURL2 = '../../../assets/img/Codestart__2.png';
 
   faStar = faStar;
-  faUser = faUser;
+  faUser = faUserCircle;
   faBars = faBars;
   moodleComboBox = new Array<Module>();
 
@@ -53,7 +52,7 @@ export class DashboardComponent implements OnInit {
     this.getUserName();
   }
 
-  async getUserName(){
+  async getUserName() {
     this.userStore.getUserNameFromStore().subscribe(async (data) => {
       let userInfo = await this.auth.getUserNameFromToken();
       this.userName = data || userInfo;
@@ -64,10 +63,14 @@ export class DashboardComponent implements OnInit {
       this.moodleComboBox = data;
     });
   }
+  loginToDashboard() {
+    this.router.navigate(['dashboard']);
+  }
   goToModule(direct: string, idModulo: number) {
     this.router.navigate(['Module', idModulo]);
   }
   exitApp() {
     this.auth.logOut();
   }
+
 }

@@ -17,6 +17,8 @@ namespace Database
         public DbSet<User> User { get; set; }
         public DbSet<User_Evaluation> User_Evaluation { get; set; }
         public DbSet<User_Moodle> User_Moodle { get; set; }
+        public DbSet<User_Topic> User_Topic { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,7 +33,7 @@ namespace Database
             modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<User_Evaluation>().ToTable("User_Evaluation");
             modelBuilder.Entity<User_Moodle>().ToTable("User_Moodle");
-
+            modelBuilder.Entity<User_Topic>().ToTable("User_Topic");
         }
 
     }

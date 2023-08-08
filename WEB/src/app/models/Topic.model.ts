@@ -3,4 +3,5 @@ export class Topic {
   name: string
   status: number
   idMoodle: number
+  posistion: number
 }

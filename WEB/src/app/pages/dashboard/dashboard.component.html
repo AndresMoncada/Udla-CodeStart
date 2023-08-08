@@ -2,34 +2,25 @@
 
   <mat-sidenav #drawer class="sidenav" [(opened)]="opened">
 
-    <mat-toolbar>
-      <fa-icon [icon]="faUser" class="icon-eye"></fa-icon>
+    <mat-toolbar class="info-usuario">
+      <i class="fa fa-user-circle" aria-hidden="true"></i>
       <p>{{userName}}</p>
     </mat-toolbar>
 
-    <mat-nav-list>
-    </mat-nav-list>
-
-    <mat-list>
-      <!-- <div class="subheader">Inicio</div>
-      <mat-divider></mat-divider> -->
-
-      <div class="subheader">Aprendizaje</div>
-      <mat-list-item class="item-content" *ngFor="let aprendizaje of moodleComboBox">
-        <a mat-list-item (click)="goToModule(aprendizaje.name, aprendizaje.idMoodle)" class="list-item-content">
-          <fa-icon [icon]="faStar"></fa-icon>
-          {{ aprendizaje.name }}
-        </a>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-
-      <div class="subheader">Preferencias</div>
-      <mat-list-item class="item-content" *ngFor="let preferencias of preferencias">
-        <a mat-list-item href="#">
-          {{ preferencias.name }}
-        </a>
-      </mat-list-item>
-    </mat-list>
+    <nav id="menu">
+      <ul>
+        <div class="subheader"><i class="fa fa-home"></i>Inicio</div>
+        <div class="subheader"> <i class="fa fa-leanpub"></i>Aprendizaje</div>
+        <ul *ngFor="let aprendizaje of moodleComboBox">
+          <li>
+            <a mat-list-item (click)="goToModule(aprendizaje.name, aprendizaje.idMoodle)">
+              {{ aprendizaje.name }}
+              <i class="fa fa-star-o" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </ul>
+    </nav>
 
   </mat-sidenav>
 
@@ -50,31 +41,6 @@
     </mat-toolbar>
 
     <div class="grid-container">
-
-      <mat-card class="card-content">
-        <mat-grid-list cols="4" rowHeight="300px">
-
-          <mat-grid-tile *ngFor="let card of moodleComboBox" [colspan]="1" [rowspan]="1">
-            <a class="redirectTo" (click)="goToModule(card.name, card.idMoodle)">
-              <mat-card class="dashboard-card">
-                <mat-card-content class="dashboard-card-content">
-                  <div class="nuevo">
-                    <img class="example-header-image" src={{card.urlImg}} alt="Imagen módulo">
-                  </div>
-                  <mat-divider></mat-divider>
-                  <div class="card-footer">
-                    <p style="font-weight: bold; font-size: 18px;color:black">{{card.name}}</p>
-                  </div>
-                </mat-card-content>
-              </mat-card>
-            </a>
-          </mat-grid-tile>
-
-        </mat-grid-list>
-      </mat-card>
-    </div>
-
-    <div class="grid-container">
       <mat-card class="welcome-card">
         <mat-card-header class="card-header-welcome">
           <mat-card-title class="title-welcome">Bienvenido a Udla CodeStart</mat-card-title>
@@ -83,23 +49,40 @@
           <p>En Udla CodeStart, te ofrecemos una experiencia educativa única y envolvente, diseñada para que puedas
             explorar, aprender y dominar los fundamentos esenciales de la programación de manera divertida y práctica.
           </p>
-          <p>Nuestro contenido de alta calidad y nuestros ejercicios interactivos te permitirán sumergirte en los temas
-            de:</p>
-          <ul>
-            <li>Datos</li>
-            <li>Operadores</li>
-            <li>Jerarquía de Operadores</li>
-            <li>Evaluación de Expresiones</li>
-          </ul>
-          <p>Sumérgete en un viaje de conocimiento que te llevará a dominar la lógica y la resolución de problemas.
-            Prepárate para desafiar tus habilidades y alcanzar nuevos niveles de comprensión mientras te adentras en el
-            mundo de la programación.</p>
           <p>No importa si eres principiante o si ya tienes algún conocimiento previo en programación, en Udla CodeStart
             encontrarás el apoyo que necesitas para avanzar en tu camino hacia el dominio de la lógica de programación y
             la resolución de problemas.</p>
           <p>¡Prepárate para un emocionante viaje de aprendizaje! Únete a nuestra comunidad y comienza a desarrollar tus
             habilidades en programación hoy mismo.</p>
         </mat-card-content>
+      </mat-card>
+
+    </div>
+
+    <div class="grid-container">
+
+      <mat-card class="card-content">
+
+        <mat-grid-list cols="1" rowHeight="220px">
+
+          <mat-grid-tile *ngFor="let card of moodleComboBox" [colspan]="1" [rowspan]="1">
+            <mat-card class="dashboard-card">
+              <div class="meta">
+                <div class="photo" style="background-image: url({{card.urlImg}})"></div>
+              </div>
+              <div class="description">
+                <h1>{{card.name}}</h1>
+                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim
+                  dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
+                <p class="read-more">
+                  <a class="redirectTo" (click)="goToModule(card.name, card.idMoodle)">Aprende más</a>
+                </p>
+              </div>
+            </mat-card>
+          </mat-grid-tile>
+
+        </mat-grid-list>
+
       </mat-card>
 
     </div>

@@ -18,5 +18,7 @@ namespace Database
         public int IdQuestion { get; set; }
         [ForeignKey("IdQuestion")]
         public virtual Question Question { get; set; }
+
+        public string Description { get; set; }
     }
 }

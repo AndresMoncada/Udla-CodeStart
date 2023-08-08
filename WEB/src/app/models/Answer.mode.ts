@@ -1,7 +1,7 @@
 export class Answer {
   idAnswer: number
   orderAnswer: number
-  IsCorrect: boolean
+  isCorrect: boolean
   idQuestion: number
   description: string
 }

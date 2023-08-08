@@ -8,16 +8,17 @@ using System.Threading.Tasks;
 
 namespace Database
 {
-    public class Topic
+    public class User_Topic
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IdUser_Topic { get; set; }
         public int IdTopic { get; set; }
-        public string Name { get; set; }
-        public int Status { get; set; }
-        public int IdMoodle { get; set; }
-        [ForeignKey("IdMoodle")]
-        public virtual Moodle Moodle { get; set; }
-        public int? Posistion { get; set; }
+        [ForeignKey("IdTopic")]
+        public virtual Topic Topic { get; set; }
+
+        public int IdUser { get; set; }
+        [ForeignKey("IdUser")]
+        public virtual User User { get; set; }
     }
 }

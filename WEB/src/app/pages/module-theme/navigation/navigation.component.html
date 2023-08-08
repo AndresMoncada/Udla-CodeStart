@@ -1,95 +1,102 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-    <mat-toolbar style="margin-left: 20px;">
-      DATOS
+
+  <mat-sidenav #drawer class="sidenav" [(opened)]="opened">
+
+    <mat-toolbar class="info-usuario">
+      <i class="fa fa-user-circle" aria-hidden="true"></i>
+      <p>{{userName}}</p>
     </mat-toolbar>
-    <mat-nav-list>
-      <mat-divider></mat-divider>
-      <div class="subheader">Contenido </div>
-      <a mat-list-item href="#">Introducción</a>
-      <mat-divider></mat-divider>
-    </mat-nav-list>
-    <mat-list *ngFor="let topic of topicComboBox">
-      <a class="subheader" (click)="scrollToCard(topic.idTopic)">
-        {{ topic.name }}
-        <fa-icon [icon]="faStar" class="icon-eye" style="font-size: 10px;">
-        </fa-icon>
-      </a>
-      <mat-list-item class="item-content" *ngFor="let subIndice of subIndice">
-        <a mat-list-item href="#">
-          {{ subIndice.name }}
-        </a>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-    </mat-list>
-    <mat-nav-list>
-      <div class="subheader">Complementarios </div>
-      <a mat-list-item href="#">Recursos complementarios</a>
-      <a mat-list-item (click)="openExamModule()">Evaluación</a>
-    </mat-nav-list>
+
+    <nav id="menu">
+      <ul>
+        <div class="subheader" (click)="loginToDashboard()"><i class="fa fa-home"></i>Inicio</div>
+        <div class="subheader"> <i class="fa fa-leanpub"></i>Datos</div>
+        <ul *ngFor="let topic of topicComboBox">
+          <li>
+            <a class="subheader" (click)="scrollToCard(topic.posistion)">
+              {{ topic.name }}
+              <i class="fa fa-star-o" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+        <div class="subheader"><i class="fa fa-cubes" aria-hidden="true"></i>Complementarios </div>
+        <li><a mat-list-item (click)="openExamModule()">Evaluación</a></li>
+      </ul>
+    </nav>
+
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <a class="redirectTo" (click)="loginToDashboard()">
-        <span><img src='{{imagenURL}}'><img class="img2" src='{{imagenURL2}}'></span>
-      </a>
+    <mat-toolbar color="primary" class="nav-top">
+      <div>
+        <button mat-mini-fab (click)="opened=!opened" class="menuBar">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <!-- <span><img src='{{imagenURL}}'>Udla Code<b>Start</b></span> -->
       <div class="example-button-container">
-        <button mat-mini-fab aria-label="Salir" (click)="exitApp()">
+        <button mat-mini-fab (click)="exitApp()">
           <mat-icon>exit_to_app</mat-icon>
         </button>
       </div>
     </mat-toolbar>
 
+    <div class="grid-container">
+      <div class="main-container">
+        <mat-card class="welcome-card ">
+          <mat-card-content class="content-welcome">
 
-    <!-- //Desde aquí -->
-    <!-- <div class="grid-container">
-      <youtube-player videoId="RSGQuH_gWNw" suggestedQuality="highres" [height]="250" [width]="500">
-      </youtube-player>
-    </div> -->
+            <div class="nuevo">
+              <p style="font-weight: bold; font-size: 25px;">{{ topicComboBox[currentPos].name }}</p>
+            </div>
+            <br><br>
+            <div *ngFor="let concept of getFilteredConcepts(topicComboBox[currentPos].idTopic)"
+              class="card-footer-Topic">
+              <p class="card-footer-Topic">{{concept.description}}</p>
+            </div>
+            <br><br>
+            <div *ngIf="getFilteredExamplesBool(topicComboBox[currentPos].idTopic)">
+              <p style="font-weight: bold; font-size: 25px;"> Ejemplos</p>
+            </div>
+            <br>
+            <div *ngFor="let examples of getFilteredExamples(topicComboBox[currentPos].idTopic)"
+              class="card-footer-Topic">
+              <p class="card-footer-Topic">{{examples.description}}</p>
+              <div *ngIf="examples.url && examples.type === 1" class="divImg">
+                <span><img class="imgExample" src='{{examples.url}}'></span>
+              </div>
+              <div *ngIf="examples.url && examples.type === 2" class="divImg">
+                <youtube-player videoId="{{examples.url}}" suggestedQuality="highres" [height]="250" [width]="500">
+                </youtube-player>
+              </div>
+            </div>
+          </mat-card-content>
 
-    <div class="grid-container" id="prueba">
-      <mat-grid-list cols="2">
-        <mat-grid-tile *ngFor="let topic of topicComboBox" [colspan]="2" [rowspan]="1">
-          <mat-card style="margin-bottom: 20px;" class="dashboard-card">
-            <mat-card-content class="dashboard-card-content-Topic" id="{{topic.idTopic}}">
-              <div class="nuevo">
-                <p style="font-weight: bold; font-size: 25px;">{{ topic.name }}</p>
+        </mat-card>
+        <div class="custom-icon">
+          <button [disabled]="currentPos===0" (click)="previousQuestion()">
+            <fa-icon [icon]="fachevronleft"></fa-icon>
+          </button>
+          <button *ngIf="currentPos!=topicComboBox.length-1" (click)="nextQuestion()">
+            <fa-icon [icon]="fachevronrigth"></fa-icon>
+          </button>
+          <div *ngIf="currentPos==topicComboBox.length-1">
+            <button>
+              <div class="markAsView">
+                <input type="checkbox" name="opcion2" id="opcion2" [checked]="countTopic==topicComboBox.length"
+                  (change)="handleCheckboxChange($event)">
+                <label for="opcion2">Marcar como visto</label><br>
               </div>
-              <mat-divider></mat-divider> <!-- Movido fuera del *ngFor -->
-              <div *ngFor="let concept of conceptComboBox" class="card-footer-Topic">
-                <div *ngIf="concept.idTopic == topic.idTopic">
-                  <p class="card-footer-Topic">{{concept.description}}</p>
-                </div>
+            </button>
+            <button *ngIf="completedTopic" (click)="openExamModule()">
+              <div class="exam-info">
+                <i class="fa fa-book" aria-hidden="true"></i>Evaluación
               </div>
-              <br><br>
-              <div *ngIf="getFilteredExamples(topic.idTopic)">
-                <p style="font-weight: bold; font-size: 25px;"> Ejemplos</p>
-              </div>
-              <div *ngFor="let examples of examplesComboBox" class="card-footer-Topic">
-                <br>
-                <div *ngIf="examples.idTopic == topic.idTopic">
-                  <p class="card-footer-Topic">{{examples.description}}</p>
-                  <div *ngIf="examples.url && examples.type === 1" class="divImg">
-                    <span><img class="imgExample" src='{{examples.url}}'></span>
-                  </div>
-                  <div *ngIf="examples.url && examples.type === 2" class="divImg">
-                    <youtube-player videoId="{{examples.url}}" suggestedQuality="highres" [height]="250" [width]="500">
-                    </youtube-player>
-                  </div>
-                </div>
-              </div>
-              <input type="checkbox" name="opcion2" id="opcion2">
-              <label for="opcion2">Marcar como visto</label><br>
-            </mat-card-content>
-          </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
+            </button>
+          </div>
+
+        </div>
+      </div>
     </div>
 
   </mat-sidenav-content>

@@ -37,10 +37,38 @@ export class UcsService {
   }
 
   getAllQuestionsById(idMoodle: number): Observable<Question[]> {
-    return this.http.get<Question[]>(`${this.baseUrl}/Exam/getAllQuestionsById/${idMoodle}`);
+    return this.http.get<Question[]>(`${this.baseUrl}/Exam/getQuestionById/${idMoodle}`);
   }
 
   getAllAnswerById(): Observable<Answer[]> {
-    return this.http.get<Answer[]>(`${this.baseUrl}/Exam/getAllAnswerById`);
+    return this.http.get<Answer[]>(`${this.baseUrl}/Exam/getAnswers`);
+  }
+
+  getUserTopic(idTopic: number, idUser: number): Observable<boolean>{
+    return this.http.get<boolean>(`${this.baseUrl}/Exam/getCheckTopic/${idTopic}/${idUser}`);
+  }
+
+  getCountTopic(idTopic: string, idUser: number): Observable<number>{
+    return this.http.get<number>(`${this.baseUrl}/Exam/getCountTopic/${idTopic}/${idUser}`);
+  }
+
+  getIdUser(userName: string): Observable<number>{
+    return this.http.get<number>(`${this.baseUrl}/User/getIdUser/${userName}`);
+  }
+
+  markAsView(idTopic: string, idUser: number) {
+    const requestBody = {
+      idTopic: idTopic,
+      idUser: idUser
+    };
+    return this.http.post<any>(`${this.baseUrl}/User/markAsView`, requestBody);
+  }
+
+  unmarkAsView(idTopic: string, idUser: number) {
+    const requestBody = {
+      idTopic: idTopic,
+      idUser: idUser
+    };
+    return this.http.post<any>(`${this.baseUrl}/User/unmarkAsView`, requestBody);
   }
 }

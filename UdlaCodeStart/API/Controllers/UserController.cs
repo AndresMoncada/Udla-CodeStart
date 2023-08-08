@@ -22,6 +22,70 @@ namespace WebAPI.Controllers
             _context = context;
         }
 
+        public class MarkAsViewRequest
+        {
+            public string IdTopic { get; set; }
+            public int IdUser { get; set; }
+        }
+
+        [HttpPost("markAsView")]
+        public async Task<bool> MarkAsView([FromBody] MarkAsViewRequest request)
+        {
+            if (request == null)
+            {
+                return false;
+            }
+            int[] idTopicArray = request.IdTopic.Split(',').Select(int.Parse).ToArray();
+            foreach (int idTopic in idTopicArray)
+            {
+                var register = await _context.User_Topic.FirstOrDefaultAsync(d => d.IdUser == request.IdUser && d.IdTopic == idTopic);
+                if (register == null)
+                {
+                    var newRegister = new User_Topic
+                    {
+                        IdTopic = idTopic,
+                        IdUser = request.IdUser
+                    };
+                    await _context.AddAsync(newRegister);
+                    await _context.SaveChangesAsync();
+                }
+            }
+
+            return true;
+        }
+
+        [HttpPost("unmarkAsView")]
+        public async Task<bool> UnmarkAsView([FromBody] MarkAsViewRequest request)
+        {
+            if (request == null)
+            {
+                return false;
+            }
+            int[] idTopicArray = request.IdTopic.Split(',').Select(int.Parse).ToArray();
+            foreach (int idTopic in idTopicArray)
+            {
+                var register = await _context.User_Topic.FirstOrDefaultAsync(d => d.IdUser == request.IdUser && d.IdTopic == idTopic);
+                if (register != null)
+                {
+                    _context.Remove(register);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            return true;
+        }
+
+        [Route("getIdUser/{userName}")]
+        [HttpGet]
+        public async Task<ActionResult<int>> GetIdUser(string userName)
+        {
+            var result = await _context.User.FirstOrDefaultAsync(d => d.UserName == userName);
+            if (result== null)
+            {
+                return NotFound("Datos no encontrados");
+            }
+            return result.IdUser;
+        }
+
         [Route("addUser")]
         [HttpPost]
         public async Task<IActionResult> AddUser([FromBody] User user)
