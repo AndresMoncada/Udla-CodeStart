@@ -6,7 +6,9 @@
     </div>
     <div class="quiz-header">
       <h4>Este es el apartado de evaluación</h4>
-      <span>Bienvenido {{userName}}</span>
+      <h4>Importante: Estas son preguntas de selección única, lee atentamente y contesta como creas correspondiente.
+        Recuerda que solo tienes 60 segundos por cada pregunta.
+      </h4>
     </div>
   </div>
 
@@ -32,7 +34,7 @@
       <div class="options">
         <ol *ngFor="let option of answerComboBox; let i = index">
           <li *ngIf="questionComboBox[currentQuestion].idQuestion === option.idQuestion"
-          [class.disable-click]="!isClickEnabled" (click)="answer(currentQuestion+1,option)">
+          [class.disable-click]="!isClickEnabled" (click)="answer(option.idQuestion ,currentQuestion+1,option)">
             <div appChangeBg [isCorrect]="option.isCorrect" class="card"  [class.selected]="selectedOptionIndex === i">
               {{option.description}}
             </div>

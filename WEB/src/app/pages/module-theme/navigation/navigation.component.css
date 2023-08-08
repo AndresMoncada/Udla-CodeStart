@@ -47,6 +47,14 @@
   margin-left: 10px;
 }
 
+.imgLogo{
+  width: 50px;
+}
+
+.spanLogo{
+  text-align: center;
+}
+
 .mat-mdc-fab.mat-accent,
 .mat-mdc-mini-fab.mat-accent {
   --mdc-fab-container-color: #11d452;

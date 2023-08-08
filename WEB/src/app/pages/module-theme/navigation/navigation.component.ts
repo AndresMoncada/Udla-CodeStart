@@ -144,8 +144,7 @@ export class NavigationComponentModule {
   }
 
   scrollToCard(idTopicOrder: number) {
-    if (idTopicOrder != null)
-      this.currentPos = idTopicOrder;
+    this.currentPos = idTopicOrder-1;
   }
 
   loginToDashboard() {
