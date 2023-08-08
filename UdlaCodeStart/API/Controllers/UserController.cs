@@ -1,4 +1,5 @@
-﻿using Database;
+﻿using Azure.Core;
+using Database;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +27,11 @@ namespace WebAPI.Controllers
         {
             public string IdTopic { get; set; }
             public int IdUser { get; set; }
+        }
+
+        public class StatusMoodle { 
+            public int IdUser { get; set; }
+            public int IdMoodle { get; set; }
         }
 
         [HttpPost("markAsView")]
@@ -74,6 +80,31 @@ namespace WebAPI.Controllers
             return true;
         }
 
+        [Route("getStatusMoodle/{idUser}")]
+        [HttpGet]
+        public async Task<ActionResult<List<bool>>> GetQuestionById(int idUser)
+        {
+            var result = _context.User_Moodle.Where(d => d.IdUser == idUser)
+                                             .OrderBy(d => d.IdMoodle)
+                                             .ToList();
+            if (result.Count == null)
+            {
+                return NotFound("Datos no encontrados");
+            }
+            List<bool> statusArray = result.Select(d => d.Status).ToList();
+            return statusArray;
+        }
+
+        [Route("addStatusMoodle")]
+        [HttpPost]
+        public async Task<bool> AddStatusMoodle([FromBody] StatusMoodle request)
+        {
+            var register = await _context.User_Moodle.FirstOrDefaultAsync(d => d.IdUser == request.IdUser && d.IdMoodle == request.IdMoodle);
+            register.Status = true;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
         [Route("getIdUser/{userName}")]
         [HttpGet]
         public async Task<ActionResult<int>> GetIdUser(string userName)
@@ -103,21 +134,35 @@ namespace WebAPI.Controllers
             if (!string.IsNullOrEmpty(passMessage))
                 return BadRequest(new { Message = passMessage.ToString() });
 
+
             user.Password = PasswordHasher.HashPassword(user.Password);
             user.Token = "";
             await _context.AddAsync(user);
             await _context.SaveChangesAsync();
+            for (int i = 0; i < 4; i++)
+            {
+                var newRegister = new User_Moodle
+                {
+                    IdMoodle = i + 1,
+                    IdUser = user.IdUser,
+                    Status=false
+                };
+                await _context.AddAsync(newRegister);
+
+            }
+            await _context.SaveChangesAsync();
+
             return Ok(new
             {
                 Status = 200,
                 Message = "Registro exitoso"
             });
         }
+
         private async Task<bool> CheckEmailExistAsync(string? email)
         {
             return await _context.User.AnyAsync(x => x.Email == email);
         }
-           
 
         private async Task<bool> CheckUsernameExistAsync(string? username)
         {

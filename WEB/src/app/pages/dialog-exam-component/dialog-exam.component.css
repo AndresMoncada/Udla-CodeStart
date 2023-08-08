@@ -11,6 +11,11 @@
   background-color: #2ab451;
 }
 
+.img-fluid{
+  width: 200px;
+  height: 200px;
+}
+
 .info-general {
   display: flex;
   justify-content: space-around;
@@ -22,6 +27,12 @@
 .custom-icon {
   display: flex;
   justify-content: end;
+}
+
+.custom-final{
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
 }
 
 .disable-click {

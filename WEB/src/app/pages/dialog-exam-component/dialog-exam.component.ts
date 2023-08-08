@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from "@angular/core";
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Answer } from "src/app/models/Answer.mode";
 import { Question } from "src/app/models/Question.model";
 import { DialogFile } from "src/app/models/dialogFile.mode";
@@ -18,6 +18,7 @@ import { faChevronLeft, faChevronRight, faRefresh } from "@fortawesome/free-soli
 export class DialogExamComponent implements OnInit {
 
   public userName: string = "";
+  idUser: number = 0;
   public currentQuestion: number = 0;
   counter = 60;
   correctAnswer: number = 0;
@@ -45,20 +46,29 @@ export class DialogExamComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private ucsService: UcsService,
     private userStore: UserStoreService,
-    private auth: AuthService
+    private auth: AuthService,
+    public dialogRef: MatDialogRef<DialogExamComponent>
   ) { }
 
   async ngOnInit() {
     this.idModulo = this.data.idModule;
     await this.getAllQuestions(this.idModulo);
+    this.getUserName();
     this.getAllAsnwer();
     this.startCounter();
   }
 
   async getUserName() {
-    this.userStore.getUserNameFromStore().subscribe(async (data) => {
+    await this.userStore.getUserNameFromStore().subscribe(async (data) => {
       let userInfo = await this.auth.getUserNameFromToken();
       this.userName = data || userInfo;
+      this.getIdUser(this.userName);
+    })
+  }
+
+  async getIdUser(userName: string) {
+    this.ucsService.getIdUser(userName).subscribe(async (data) => {
+      this.idUser = data;
     })
   }
 
@@ -138,6 +148,11 @@ export class DialogExamComponent implements OnInit {
 
   goToRevision(){
     this.isQuizCompleted = true;
+  }
+
+  finishQuiz(){
+    this.ucsService.markPass(this.idModulo, this.idUser).subscribe();
+    this.dialogRef.close();
   }
 
 }

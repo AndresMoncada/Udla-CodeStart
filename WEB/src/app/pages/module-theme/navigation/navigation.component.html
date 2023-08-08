@@ -15,7 +15,6 @@
           <li>
             <a class="subheader" (click)="scrollToCard(topic.posistion)">
               {{ topic.name }}
-              <i class="fa fa-star-o" aria-hidden="true"></i>
             </a>
           </li>
         </ul>
@@ -62,6 +61,7 @@
             <div *ngFor="let examples of getFilteredExamples(topicComboBox[currentPos].idTopic)"
               class="card-footer-Topic">
               <p class="card-footer-Topic">{{examples.description}}</p>
+              <br>
               <div *ngIf="examples.url && examples.type === 1" class="divImg">
                 <span><img class="imgExample" src='{{examples.url}}'></span>
               </div>

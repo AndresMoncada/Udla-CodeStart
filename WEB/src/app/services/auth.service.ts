@@ -19,6 +19,7 @@ export class AuthService {
     private router: Router
   ) {
     this.userPayload = this.decodeToken();
+    this.saveUserNameToLocalStorage();
   }
 
   logIn(logObj: any) {
@@ -50,6 +51,13 @@ export class AuthService {
     const jwtHelper = new JwtHelperService();
     const actualToken = this.getToken();
     return jwtHelper.decodeToken(actualToken ?? "");
+  }
+
+  saveUserNameToLocalStorage() {
+    const userName = this.getUserNameFromToken();
+    if (userName) {
+      localStorage.setItem('user_name', userName);
+    }
   }
 
   getIdUserFromToken(){

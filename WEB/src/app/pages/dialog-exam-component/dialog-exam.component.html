@@ -50,7 +50,7 @@
         </button>
         <div class="revision-info" *ngIf="currentQuestion===questionComboBox.length-1">
           <button (click)="goToRevision()">
-            <i class="fa fa-check-square" aria-hidden="true"></i>Revisar
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>Finalizar intento
           </button>
         </div>
       </div>
@@ -58,8 +58,8 @@
     </ng-container>
 
     <ng-container *ngIf="isQuizCompleted">
-      <div class="custom-icon">
-        <img style="width: 50%;" class="img-fluid col-sm-12 mx-auto"
+      <div class="custom-final">
+        <img class="img-fluid"
           src="https://icon-library.com/images/celebration-icon-png/celebration-icon-png-7.jpg" alt="">
         <div class="result text-center col-md-6 col-sm-12">
           <h3>Felicidades! <br>Haz completado el examen. <br>Estos son tus resultados:</h3>
@@ -68,8 +68,12 @@
           <p>Total de respuestas incorrectas : {{inCorrectAnswer}} </p>
           <br><br><br>
           <button *ngIf="correctAnswer!=questionComboBox.length" (click)="resetQuiz()">
-            Volver a intentar examen
             <fa-icon [icon]="farefresh"></fa-icon>
+            Volver a intentar examen
+          </button>
+          <button *ngIf="correctAnswer===questionComboBox.length" (click)="finishQuiz()">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            Finalizar examen
           </button>
         </div>
       </div>

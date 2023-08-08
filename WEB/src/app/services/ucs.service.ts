@@ -24,6 +24,10 @@ export class UcsService {
     return this.http.get<Module[]>(`${this.baseUrl}/Moddle/getAllModules`);
   }
 
+  getInfoModules(idUser: number): Observable<boolean[]> {
+    return this.http.get<boolean[]>(`${this.baseUrl}/User/getStatusMoodle/${idUser}`);
+  }
+
   getTopicsById(idMoodle: number): Observable<Topic[]> {
     return this.http.get<Topic[]>(`${this.baseUrl}/Topic/getTopicsById/${idMoodle}`);
   }
@@ -70,5 +74,13 @@ export class UcsService {
       idUser: idUser
     };
     return this.http.post<any>(`${this.baseUrl}/User/unmarkAsView`, requestBody);
+  }
+
+  markPass(idMoodle: number, idUser: number) {
+    const requestBody = {
+      idMoodle: idMoodle,
+      idUser: idUser
+    };
+    return this.http.post<any>(`${this.baseUrl}/User/addStatusMoodle`, requestBody);
   }
 }

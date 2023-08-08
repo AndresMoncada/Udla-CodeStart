@@ -16,8 +16,8 @@ namespace Database
         public string Description { get; set; }
         public string Reference { get; set; }
         public string URL { get; set; }
-        public int Type { get; set; }
-        public int IdTopic { get; set; }
+        public int? Type { get; set; }
+        public int? IdTopic { get; set; }
         [ForeignKey("IdTopic")]
         public virtual Topic Topic { get; set; }
     }

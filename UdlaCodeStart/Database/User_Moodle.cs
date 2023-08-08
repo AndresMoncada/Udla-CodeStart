@@ -20,5 +20,6 @@ namespace Database
         public int IdUser { get; set; }
         [ForeignKey("IdUser")]
         public virtual User User { get; set; }
+        public bool Status { get; set; }
     }
 }

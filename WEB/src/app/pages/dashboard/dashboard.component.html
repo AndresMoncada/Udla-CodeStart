@@ -15,7 +15,8 @@
           <li>
             <a mat-list-item (click)="goToModule(aprendizaje.name, aprendizaje.idMoodle)">
               {{ aprendizaje.name }}
-              <i class="fa fa-star-o" aria-hidden="true"></i>
+              <i *ngIf="!infoMoodle[aprendizaje.idMoodle-1]" class="fa fa-star-o icon-star-o" aria-hidden="true"></i>
+              <i *ngIf="infoMoodle[aprendizaje.idMoodle-1]" class="fa fa-star icon-star" aria-hidden="true"></i>
             </a>
           </li>
         </ul>
@@ -72,10 +73,10 @@
               </div>
               <div class="description">
                 <h1>{{card.name}}</h1>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim
-                  dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
+                <p> En este apartado podrás encontrar todo lo relaciona a {{card.name}}. Aquí encontrarás conceptos ejemplos y al finalizar
+                  un examen para descubrir que tanto has aprendido.</p>
                 <p class="read-more">
-                  <a class="redirectTo" (click)="goToModule(card.name, card.idMoodle)">Aprende más</a>
+                  <a class="redirectTo" (click)="goToModule(card.name, card.idMoodle)">Aprende más sobre {{card.name}}</a>
                 </p>
               </div>
             </mat-card>

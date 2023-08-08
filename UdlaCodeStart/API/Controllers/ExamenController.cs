@@ -20,7 +20,10 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Question>>> GetQuestionById(int idMoodle)
         {
-            var result = _context.Question.Where(d => d.IdEvaluation == idMoodle).ToList();
+            var result = _context.Question.Where(d => d.IdEvaluation == idMoodle)
+                                              .OrderBy(x => Guid.NewGuid()) // Orden al azar
+                                              .Take(5) // Obtener solo 5 preguntas
+                                              .ToList();
             if (result.Count == null)
             {
                 return NotFound("Datos no encontrados");

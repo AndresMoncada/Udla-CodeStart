@@ -39,30 +39,52 @@ export class DashboardComponent implements OnInit {
   faUser = faUserCircle;
   faBars = faBars;
   moodleComboBox = new Array<Module>();
+  infoMoodle: boolean[] = [];
 
-  userName: string = "No toma";
+  userName: string = "";
+  idUser: number = 0;
 
   constructor(private ucsService: UcsService
     , private router: Router
     , private auth: AuthService
-    , private userStore: UserStoreService) { }
+    , private userStore: UserStoreService
+    , ) { }
 
-  ngOnInit() {
-    this.getAllMoodles();
+  async ngOnInit() {
     this.getUserName();
+    await this.getAllMoodles();
   }
 
   async getUserName() {
     this.userStore.getUserNameFromStore().subscribe(async (data) => {
-      let userInfo = await this.auth.getUserNameFromToken();
-      this.userName = data || userInfo;
+      let userInfo = localStorage.getItem('user_name');
+      if (userInfo !== null) {
+        this.userName = data || userInfo;
+        this.getIdUser(this.userName);
+      }
     })
   }
+
+  async getIdUser(userName: string) {
+    this.ucsService.getIdUser(userName).subscribe(async (data) => {
+      this.idUser = data;
+      this.getInfoMoodle(this.idUser);
+    })
+  }
+
   async getAllMoodles() {
     this.ucsService.getAllModules().subscribe(data => {
       this.moodleComboBox = data;
     });
   }
+
+  async getInfoMoodle(idUser: number) {
+    this.ucsService.getInfoModules(idUser).subscribe(data => {
+      this.infoMoodle = data;
+      console.log(this.infoMoodle);
+    });
+  }
+
   loginToDashboard() {
     this.router.navigate(['dashboard']);
   }
