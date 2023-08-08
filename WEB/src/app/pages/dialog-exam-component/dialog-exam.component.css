@@ -6,7 +6,7 @@
 .info-ini {
   padding: 2em;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   color: white;
   background-color: #2ab451;
 }
@@ -21,7 +21,11 @@
 
 .custom-icon {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
+}
+
+.disable-click {
+  pointer-events: none;
 }
 
 button{
@@ -31,11 +35,25 @@ button{
   background: inherit;
 }
 
+.revision-info button{
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.revision-info i{
+  padding-left: 15px;
+  padding-right: 5px;
+}
+
 .card {
   max-width: 800px;
   margin: 0 auto;
   padding: 10px;
   border-radius: 100px;
+}
+
+.correctAnswer h3{
+  color: #2ab451;
 }
 
 .data{

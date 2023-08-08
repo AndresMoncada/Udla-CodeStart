@@ -9,6 +9,7 @@
       <span>Bienvenido {{userName}}</span>
     </div>
   </div>
+
   <div class="data">
 
     <ng-container *ngIf="!isQuizCompleted">
@@ -29,26 +30,29 @@
       </div>
 
       <div class="options">
-        <ol *ngFor="let option of answerComboBox">
+        <ol *ngFor="let option of answerComboBox; let i = index">
           <li *ngIf="questionComboBox[currentQuestion].idQuestion === option.idQuestion"
-            (click)="answer(currentQuestion+1,option)">
-            <div appChangeBg [isCorrect]="option.isCorrect" class="card">
+          [class.disable-click]="!isClickEnabled" (click)="answer(currentQuestion+1,option)">
+            <div appChangeBg [isCorrect]="option.isCorrect" class="card"  [class.selected]="selectedOptionIndex === i">
               {{option.description}}
             </div>
           </li>
         </ol>
       </div>
-
+      <div *ngIf="isIncorrectAnswer" class="correctAnswer">
+        <div class="card">
+          <h3>Respuesta correcta: {{stringCorrectAnswer}}</h3>
+        </div>
+      </div>
       <div class="custom-icon">
-        <button [disabled]="currentQuestion===0" (click)="previousQuestion()">
-          <fa-icon [icon]="fachevronleft"></fa-icon>
-        </button>
-        <button (click)="resetQuiz()">
-          <fa-icon [icon]="farefresh"></fa-icon>
-        </button>
-        <button (click)="nextQuestion()">
+        <button *ngIf="currentQuestion!=questionComboBox.length-1" (click)="nextQuestion()">
           <fa-icon [icon]="fachevronrigth"></fa-icon>
         </button>
+        <div class="revision-info" *ngIf="currentQuestion===questionComboBox.length-1">
+          <button (click)="goToRevision()">
+            <i class="fa fa-check-square" aria-hidden="true"></i>Revisar
+          </button>
+        </div>
       </div>
 
     </ng-container>
@@ -62,6 +66,11 @@
           <p>Total de preguntas : {{questionComboBox.length}} </p>
           <p>Total de respuestas correctas : {{correctAnswer}} </p>
           <p>Total de respuestas incorrectas : {{inCorrectAnswer}} </p>
+          <br><br><br>
+          <button *ngIf="correctAnswer!=questionComboBox.length" (click)="resetQuiz()">
+            Volver a intentar examen
+            <fa-icon [icon]="farefresh"></fa-icon>
+          </button>
         </div>
       </div>
     </ng-container>

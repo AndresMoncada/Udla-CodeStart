@@ -25,6 +25,10 @@ export class DialogExamComponent implements OnInit {
   interval$: any;
   progress: string = "0";
   isQuizCompleted: boolean = false;
+  isClickEnabled: boolean  = true;
+
+  stringCorrectAnswer: string = "";
+  isIncorrectAnswer: boolean = false;
 
   fachevronleft = faChevronLeft;
   farefresh = faRefresh;
@@ -34,6 +38,7 @@ export class DialogExamComponent implements OnInit {
   answerComboBox = new Array<Answer>();
 
   selectedAnswer: Answer;
+  selectedOptionIndex: number = -1;
   idModulo: number = -1;
 
   constructor(
@@ -43,9 +48,9 @@ export class DialogExamComponent implements OnInit {
     private auth: AuthService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.idModulo = this.data.idModule;
-    this.getAllQuestions(this.idModulo);
+    await this.getAllQuestions(this.idModulo);
     this.getAllAsnwer();
     this.startCounter();
   }
@@ -59,6 +64,7 @@ export class DialogExamComponent implements OnInit {
 
   nextQuestion() {
     this.currentQuestion++;
+    this.resetCounter();
   }
   previousQuestion() {
     this.currentQuestion--;
@@ -77,28 +83,19 @@ export class DialogExamComponent implements OnInit {
   }
 
   answer(currentQno: number, option: any) {
-
+    this.isClickEnabled = false;
+    var correctAnswer = this.answerComboBox.find(d=> d.idQuestion == this.currentQuestion+1 && d.isCorrect == true);
+    if(correctAnswer)
+      this.stringCorrectAnswer = correctAnswer.description;
+    this.selectedOptionIndex = this.answerComboBox.indexOf(option);
     if (currentQno === this.questionComboBox.length) {
-      this.isQuizCompleted = true;
       this.stopCounter();
     }
-    if (option.correct) {
+    if (option.isCorrect) {
       this.correctAnswer++;
-      setTimeout(() => {
-        // this.currentQuestion++;
-        this.resetCounter();
-        this.getProgressPercent();
-      }, 1000);
-
-
     } else {
-      setTimeout(() => {
-        // this.currentQuestion++;
         this.inCorrectAnswer++;
-        this.resetCounter();
-        this.getProgressPercent();
-      }, 1000);
-
+        this.isIncorrectAnswer = true;
     }
   }
 
@@ -113,29 +110,34 @@ export class DialogExamComponent implements OnInit {
       });
     setTimeout(() => {
       this.interval$.unsubscribe();
-    }, 600000);
+    }, 60000);
   }
+
   stopCounter() {
     this.interval$.unsubscribe();
     this.counter = 0;
   }
+
   resetCounter() {
+    this.isClickEnabled = true;
+    this.isIncorrectAnswer = false;
     this.stopCounter();
     this.counter = 60;
     this.startCounter();
   }
+
   resetQuiz() {
     this.resetCounter();
     this.getAllQuestions(this.idModulo);
+    this.correctAnswer = 0;
+    this.inCorrectAnswer = 0;
+    this.isQuizCompleted = false;
     this.counter = 60;
     this.currentQuestion = 0;
-    this.progress = "0";
-
   }
 
-
-  getProgressPercent() {
-    this.progress = ((this.currentQuestion / this.questionComboBox.length) * 100).toString();
-    return this.progress;
+  goToRevision(){
+    this.isQuizCompleted = true;
   }
+
 }

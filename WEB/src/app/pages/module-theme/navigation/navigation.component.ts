@@ -35,7 +35,7 @@ export class NavigationComponentModule {
 
   userName: string = "No toma";
   idUser: number = 0;
-  public currentPos: number = 1;
+  public currentPos: number = 0;
 
   faStar = faStar;
   fachevronleft = faChevronLeft;
