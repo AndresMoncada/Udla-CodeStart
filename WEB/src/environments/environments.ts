@@ -1,3 +1,3 @@
 export const environment = {
-    apiBaseUrl: "https://www.udlacodestart.somee.com/api"
+    apiBaseUrl: "http://www.udlacodestart.somee.com/api"
 }
