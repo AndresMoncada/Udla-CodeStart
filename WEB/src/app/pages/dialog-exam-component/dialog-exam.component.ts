@@ -92,9 +92,9 @@ export class DialogExamComponent implements OnInit {
     });
   }
 
-  answer(currentQno: number, option: any) {
+  answer(idQuestion: number,currentQno: number, option: any) {
     this.isClickEnabled = false;
-    var correctAnswer = this.answerComboBox.find(d=> d.idQuestion == this.currentQuestion+1 && d.isCorrect == true);
+    var correctAnswer = this.answerComboBox.find(d=> d.idQuestion == idQuestion && d.isCorrect == true);
     if(correctAnswer)
       this.stringCorrectAnswer = correctAnswer.description;
     this.selectedOptionIndex = this.answerComboBox.indexOf(option);

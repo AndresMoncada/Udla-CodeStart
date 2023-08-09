@@ -1,3 +1,3 @@
 export const environment = {
-    apiBaseUrl: "https://localhost:44313/api"
+    apiBaseUrl: "https://www.udlacodestart.somee.com/api"
 }
